@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FURKATECH TECHNOLOGY - Geleceğin Dijital Deneyimi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-pink: #ff0080;
+            --neon-cyan: #00ffff;
+            --neon-yellow: #ffff00;
+            --neon-purple: #8000ff;
+            --dark-bg: #0a0a0f;
+            --card-bg: rgba(0, 0, 0, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a0033 50%, #000a1a 100%);
+            color: var(--neon-cyan);
+            font-family: 'Rajdhani', monospace;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--neon-cyan);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        /* Video Hero Section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.3) contrast(1.2) saturate(1.5);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 0, 128, 0.3) 0%, 
+                rgba(0, 255, 255, 0.2) 50%, 
+                rgba(128, 0, 255, 0.3) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 7vw, 7rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan), var(--neon-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 50px rgba(255, 0, 128, 0.8);
+            margin-bottom: 20px;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 20px var(--neon-pink)); }
+            50% { filter: drop-shadow(0 0 30px var(--neon-cyan)); }
+            100% { filter: drop-shadow(0 0 40px var(--neon-yellow)); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--neon-cyan);
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.5);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        .nav-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Service Filter */
+        .service-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background: var(--glass-bg);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            background: var(--dark-bg);
+        }
+
+        /* Brand Section */
+        .brand-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a0033 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 0, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridFloat 20s linear infinite;
+        }
+
+        @keyframes gridFloat {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        .brand-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .brand-logo {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 19vw, 9rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan), var(--neon-yellow), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 400% 400%;
+            animation: gradientShift 4s ease infinite, logoFloat 3s ease-in-out infinite;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .brand-tagline {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .brand-description {
+            font-size: 1.3rem;
+            color: #aaa;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Content Sections */
+        .content-section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-pink);
+            box-shadow: 0 20px 40px rgba(255, 0, 128, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--neon-cyan);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .service-card:hover .service-icon {
+            color: var(--neon-pink);
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--neon-yellow);
+            margin-bottom: 20px;
+        }
+
+        .service-btn {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .service-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 0, 128, 0.4);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        .about-text h3 {
+            color: var(--neon-cyan);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            background: var(--glass-bg);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--neon-pink);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-bg), #1a0033);
+            padding: 60px 20px 30px;
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            color: var(--neon-cyan);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #aaa;
+            line-height: 1.6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--neon-pink);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .social-btn i {
+            display: inline-block;
+        }
+
+        .social-btn:hover {
+            transform: rotate(360deg) scale(1.2);
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-bar {
+                position: fixed;
+                bottom: 20px;
+                top: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                right: auto;
+                padding: 8px 15px;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                font-size: 0.8rem;
+                padding: 8px 15px;
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1rem, 2.5vw, 1.5rem);
+                letter-spacing: 2px;
+            }
+
+            .hero-cta {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+            }
+
+            .brand-logo {
+                font-size: clamp(2rem, 10vw, 5rem);
+            }
+
+            .brand-tagline {
+                font-size: clamp(1.2rem, 3vw, 2rem);
+            }
+
+            .brand-description {
+                font-size: 1rem;
+                max-width: 90%;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 20px;
+            }
+
+            .service-icon {
+                font-size: 2.5rem;
+            }
+
+            .service-title {
+                font-size: 1.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .about-text {
+                font-size: 1rem;
+            }
+
+            .stat-item {
+                padding: 20px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .content-section#contact .section-container div {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .social-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .service-filter {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                font-size: 0.8rem;
+                padding: 6px 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nav-bar {
+                width: 90%;
+                padding: 6px 10px;
+            }
+
+            .nav-btn {
+                font-size: 0.7rem;
+                padding: 6px 12px;
+            }
+
+            .hero-section {
+                height: 80vh;
+            }
+
+            .hero-title {
+                font-size: clamp(1.5rem, 5vw, 3rem);
+            }
+
+            .hero-subtitle {
+                font-size: clamp(0.9rem, 2vw, 1.2rem);
+                letter-spacing: 1.5px;
+            }
+
+            .hero-cta {
+                padding: 10px 25px;
+                font-size: 0.8rem;
+            }
+
+            .brand-logo {
+                font-size: clamp(1.8rem, 8vw, 3.5rem);
+            }
+
+            .brand-tagline {
+                font-size: clamp(1rem, 2.5vw, 1.5rem);
+            }
+
+            .brand-description {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .section-title {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+            }
+
+            .service-card {
+                padding: 15px;
+            }
+
+            .service-icon {
+                font-size: 2rem;
+            }
+
+            .service-title {
+                font-size: 1.3rem;
+            }
+
+            .service-description {
+                font-size: 0.9rem;
+            }
+
+            .service-price {
+                font-size: 1.2rem;
+            }
+
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .about-text p {
+                font-size: 0.9rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            .footer-section h4 {
+                font-size: 1.1rem;
+            }
+
+            .footer-section p, .footer-section a {
+                font-size: 0.9rem;
+            }
+
+            .footer-bottom p {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Dokunma optimizasyonu için butonlar */
+        .nav-btn, .hero-cta, .service-btn, .social-btn, .filter-btn {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Animasyonları mobil için sadeleştirme */
+        @media (max-width: 768px) {
+            .hero-title {
+                animation: none;
+            }
+
+            .brand-logo {
+                animation: gradientShift 6s ease infinite;
+            }
+
+            .service-card:hover {
+                transform: none;
+            }
+
+            .service-icon {
+                transform: none;
+            }
+        }
+
+        /* Smooth transitions */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">YÜKLENIYOR...</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-btn active">Ana Sayfa</a>
+        <button class="nav-btn" onclick="showSection('services')">Hizmetler</button>
+        <button class="nav-btn" onclick="showSection('about')">Hakkımızda</button>
+        <a href="index.html#contact" class="nav-btn">İletişim</a>
+    </nav>
+
+    <!-- Hero Section with Video -->
+    <section class="hero-section">
+        <video class="hero-video" autoplay muted loop id="heroVideo">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" media="(min-width: 768px)">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" media="(max-width: 767px)">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">FURKATECH TECHNOLOGY</h1>
+            <p class="hero-subtitle">Geleceği Bugün Yaşa</p>
+            <button class="hero-cta" onclick="showSection('services')">Keşfet</button>
+        </div>
+    </section>
+
+    <!-- Brand Section -->
+    <section class="brand-section">
+        <div class="brand-content">
+            <h1 class="brand-logo">FURKATECH TECHNOLOGY</h1>
+            <p class="brand-tagline">DİJİTAL ÇÖZÜMLERİ</p>
+            <p class="brand-description">
+                Geçmişin nostaljik charm'ı ile geleceğin teknolojisini birleştiren premium dijital deneyimler.
+                Synthwave estetiği ve modern işlevsellik ile markanızı dijital dünyada öne çıkarıyoruz.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section class="content-section active" id="home">
+            <div class="section-container">
+                <h2 class="section-title">Hoş Geldiniz</h2>
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <p style="font-size: 1.4rem; line-height: 1.8; color: #ddd; margin-bottom: 30px;">
+                        RETRO WAVE, dijital dünyada benzersiz deneyimler yaratan yenilikçi bir ajans.
+                        80'lerin neon renkli dünyası ile günümüzün teknolojisini harmanlayarak,
+                        markanız için unutulmaz dijital çözümler üretiyoruz.
+                    </p>
+                    <button class="hero-cta" onclick="showSection('services')" style="margin-top: 20px;">
+                        Hizmetleri Keşfet
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="content-section" id="services">
+            <div class="section-container">
+                <h2 class="section-title">Hizmetlerimiz</h2>
+                <div class="service-filter" id="serviceFilter">
+                    <button class="filter-btn active" onclick="filterServices('all')">Tümü</button>
+                    <button class="filter-btn" onclick="filterServices('web')">Web</button>
+                    <button class="filter-btn" onclick="filterServices('ecommerce')">E-Ticaret</button>
+                    <button class="filter-btn" onclick="filterServices('mobile')">Mobil</button>
+                    <button class="filter-btn" onclick="filterServices('branding')">Marka</button>
+                    <button class="filter-btn" onclick="filterServices('seo')">SEO</button>
+                    <button class="filter-btn" onclick="filterServices('video')">Video</button>
+                    <button class="filter-btn" onclick="filterServices('social')">Sosyal Medya</button>
+                    <button class="filter-btn" onclick="filterServices('hosting')">Hosting</button>
+                    <button class="filter-btn" onclick="filterServices('music')">Müzik</button>
+                    <button class="filter-btn" onclick="filterServices('marketing')">Pazarlama</button>
+                </div>
+                <div class="services-grid" id="servicesGrid">
+                    <!-- Dinamik olarak yüklenecek -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="content-section" id="about">
+            <div class="section-container">
+                <h2 class="section-title">Hakkımızda</h2>
+                <div class="about-content" id="aboutContent">
+                    <!-- Dinamik olarak yüklenecek -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="content-section" id="contact">
+            <div class="section-container">
+                <h2 class="section-title">İletişim</h2>
+                <div style="text-align: center; max-width: 600px; margin: 0 auto;" id="contactContent">
+                    <!-- Dinamik olarak yüklenecek -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content" id="footerContent">
+            <!-- Dinamik olarak yüklenecek -->
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 FURKATECH TECHNOLOGY. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        const servicesData = [
+            {
+                icon: 'bi-code-slash',
+                title: 'Retro Web Tasarım',
+                description: 'Synthwave ve cyberpunk estetiği ile modern web siteleri',
+                price: '₺5.000',
+                category: 'web'
+            },
+            {
+                icon: 'bi-cart4',
+                title: 'E-Ticaret Çözümleri',
+                description: 'Futuristik tasarım ile güçlü online mağazalar',
+                price: '₺12.000',
+                category: 'ecommerce'
+            },
+            {
+                icon: 'bi-phone',
+                title: 'Mobil Uygulama',
+                description: 'iOS ve Android için neon temalı uygulamalar',
+                price: '₺15.000',
+                category: 'mobile'
+            },
+            {
+                icon: 'bi-brush',
+                title: 'Marka Kimliği',
+                description: 'Retro-modern logo ve kurumsal kimlik tasarımı',
+                price: '₺3.500',
+                category: 'branding'
+            },
+            {
+                icon: 'bi-graph-up',
+                title: 'SEO & Performans',
+                description: 'Arama motorlarında üst sıralarda görünürlük',
+                price: '₺2.800',
+                category: 'seo'
+            },
+            {
+                icon: 'bi-camera-reels',
+                title: 'Video Prodüksiyon',
+                description: 'Synthwave tarzı tanıtım ve reklam videoları',
+                price: '₺8.500',
+                category: 'video'
+            },
+            {
+                icon: 'bi-megaphone',
+                title: 'Sosyal Medya',
+                description: 'Retro tarzında sosyal medya yönetimi',
+                price: '₺1.800',
+                category: 'social'
+            },
+            {
+                icon: 'bi-server',
+                title: 'Hosting & Bakım',
+                description: 'Güvenli hosting ve düzenli site bakımı',
+                price: '₺450/ay',
+                category: 'hosting'
+            },
+            {
+                icon: 'bi-music-note-beamed',
+                title: 'Müzik Prodüksiyon',
+                description: 'Synthwave ve retrowave müzik kompozisyonu',
+                price: '₺4.200',
+                category: 'music'
+            },
+            {
+                icon: 'bi-bullseye',
+                title: 'Dijital Pazarlama',
+                description: 'Google Ads ve Facebook reklamları',
+                price: '₺2.100',
+                category: 'marketing'
+            }
+        ];
+
+        const aboutData = {
+            text: `
+                <h3>Vizyonumuz</h3>
+                <p>RETRO WAVE, dijital dünyada nostaljik estetik ile modern teknolojinin mükemmel 
+                birleşimini yaratmak için kuruldu. 2019 yılından beri, markaları synthwave 
+                estetiği ile güçlendiriyor, unutulmaz dijital deneyimler yaratıyoruz.</p>
+                
+                <h3 style="margin-top: 30px;">Yaklaşımımız</h3>
+                <p>Her projede, 80'lerin neon renkli dünyasından ilham alarak, günümüzün 
+                teknolojik imkanlarını kullanıyoruz. Amacımız sadece görsel olarak etkileyici 
+                değil, aynı zamanda işlevsel ve kullanıcı dostu çözümler sunmak.</p>
+            `,
+            stats: [
+                { number: '150+', label: 'Proje' },
+                { number: '98%', label: 'Memnuniyet' },
+                { number: '6', label: 'Yıl Tecrübe' },
+                { number: '24/7', label: 'Destek' }
+            ]
+        };
+
+        const footerData = {
+            company: {
+                title: 'RETRO WAVE',
+                description: 'Dijital dünyada fark yaratan, retro estetik ile modern teknolojinin buluştuğu yaratıcı ajans.',
+                social: ['bi-instagram', 'bi-twitter-x', 'bi-youtube', 'bi-linkedin']
+            },
+            services: {
+                title: 'Hizmetler',
+                links: ['Web Tasarım', 'Mobil Uygulama', 'E-Ticaret', 'SEO', 'Sosyal Medya']
+            },
+            contact: {
+                title: 'İletişim',
+                info: ['info@retrowave.digital', '+90 555 123 4567', 'İstanbul, Türkiye']
+            },
+            legal: {
+                title: 'Yasal',
+                links: ['Gizlilik Politikası', 'Kullanım Şartları', 'Çerez Politikası']
+            }
+        };
+
+        let currentSection = 'home';
+        let isLoading = true;
+
+        function initSite() {
+            setTimeout(() => {
+                const loader = document.getElementById('loadingScreen');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 500);
+                isLoading = false;
+            }, 1500);
+
+            loadServices();
+            loadAbout();
+            loadFooter();
+            loadContact();
+            initVideo();
+            optimizeScroll();
+            optimizeTouch();
+            optimizeAnimations();
+
+            window.addEventListener('resize', optimizeAnimations);
+        }
+
+        function initVideo() {
+            const video = document.getElementById('heroVideo');
+            video.preload = 'metadata';
+            video.muted = true;
+            video.playsInline = true;
+            
+            video.addEventListener('loadeddata', () => {
+                video.play().catch(e => console.log('Video autoplay prevented'));
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play().catch(e => console.log('Video play prevented'));
+                    } else {
+                        video.pause();
+                    }
+                });
+            });
+            observer.observe(video);
+        }
+
+        function loadServices(category = 'all') {
+            const grid = document.getElementById('servicesGrid');
+            const fragment = document.createDocumentFragment();
+
+            const filteredServices = category === 'all' 
+                ? servicesData 
+                : servicesData.filter(service => service.category === category);
+
+            filteredServices.forEach((service, index) => {
+                const card = document.createElement('div');
+                card.className = 'service-card fade-in';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <i class="bi ${service.icon} service-icon"></i>
+                    <h3 class="service-title">${service.title}</h3>
+                    <p class="service-description">${service.description}</p>
+                    <div class="service-price">${service.price}</div>
+                    <button class="service-btn" onclick="selectService('${service.title}')">
+                        Seç
+                    </button>
+                `;
+                
+                fragment.appendChild(card);
+            });
+
+            grid.innerHTML = '';
+            grid.appendChild(fragment);
+        }
+
+        function filterServices(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            loadServices(category);
+        }
+
+        function loadAbout() {
+            const container = document.getElementById('aboutContent');
+            
+            container.innerHTML = `
+                <div class="about-text fade-in">
+                    ${aboutData.text}
+                </div>
+                <div class="about-stats fade-in">
+                    ${aboutData.stats.map(stat => `
+                        <div class="stat-item">
+                            <span class="stat-number">${stat.number}</span>
+                            <span class="stat-label">${stat.label}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function loadContact() {
+            const container = document.getElementById('contactContent');
+            container.innerHTML = `
+                <p style="font-size: 1.3rem; color: #ddd; margin-bottom: 40px;">
+                    Projeleriniz için bizimle iletişime geçin. Dijital dünyada fark yaratmaya hazır mısınız?
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    ${footerData.contact.info.map((info, index) => `
+                        <div style="background: var(--glass-bg); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px);">
+                            <h4 style="color: var(--neon-cyan); margin-bottom: 15px;">
+                                ${index === 0 ? '📧 E-posta' : index === 1 ? '📞 Telefon' : '📍 Adres'}
+                            </h4>
+                            <p>${info}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function loadFooter() {
+            const container = document.getElementById('footerContent');
+            
+            container.innerHTML = `
+                <div class="footer-section">
+                    <h4>${footerData.company.title}</h4>
+                    <p>${footerData.company.description}</p>
+                    <div class="social-links">
+                        ${footerData.company.social.map(icon => `
+                            <button class="social-btn" onclick="handleSocial('${icon}')">
+                                <i class="bi ${icon}"></i>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>${footerData.services.title}</h4>
+                    ${footerData.services.links.map(link => `
+                        <p><a href="#" onclick="showSection('services')">${link}</a></p>
+                    `).join('')}
+                </div>
+                <div class="footer-section">
+                    <h4>${footerData.contact.title}</h4>
+                    ${footerData.contact.info.map(info => `<p>${info}</p>`).join('')}
+                </div>
+                <div class="footer-section">
+                    <h4>${footerData.legal.title}</h4>
+                    ${footerData.legal.links.map(link => `
+                        <p><a href="#" onclick="showModal('${link}')">${link}</a></p>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function showSection(sectionId) {
+            if (isLoading) return;
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const currentEl = document.getElementById(currentSection);
+            if (currentEl) {
+                currentEl.style.opacity = '0';
+                setTimeout(() => {
+                    currentEl.classList.remove('active');
+                }, 300);
+            }
+
+            setTimeout(() => {
+                const newEl = document.getElementById(sectionId);
+                if (newEl) {
+                    newEl.classList.add('active');
+                    setTimeout(() => {
+                        newEl.style.opacity = '1';
+                        newEl.querySelectorAll('.fade-in').forEach((el, i) => {
+                            el.style.animationDelay = `${i * 0.1}s`;
+                            el.style.animation = 'none';
+                            el.offsetHeight;
+                            el.style.animation = null;
+                        });
+                    }, 50);
+                }
+                currentSection = sectionId;
+            }, 300);
+        }
+
+        function selectService(serviceName) {
+            showRetroAlert(`Harika seçim! "${serviceName}" hizmeti için size özel teklif hazırlayalım. İletişim formumuz yakında gelecek! 🚀`, 'success');
+        }
+
+        function handleSocial(platform) {
+            const platforms = {
+                'bi-instagram': 'Instagram',
+                'bi-twitter-x': 'Twitter',
+                'bi-youtube': 'YouTube',
+                'bi-linkedin': 'LinkedIn'
+            };
+            showRetroAlert(`${platforms[platform]} sayfamızı ziyaret edin! 💫`, 'info');
+        }
+
+        function showModal(type) {
+            showRetroAlert(`${type} sayfası yakında yayınlanacak! 📋`, 'info');
+        }
+
+        function showRetroAlert(message, type = 'info') {
+            const colors = {
+                'success': 'linear-gradient(45deg, #00ff88, #00ffff)',
+                'info': 'linear-gradient(45deg, #ff00ff, #8000ff)',
+                'warning': 'linear-gradient(45deg, #ffff00, #ff8000)'
+            };
+
+            const alert = document.createElement('div');
+            alert.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: ${colors[type]};
+                color: white;
+                padding: 30px 40px;
+                border-radius: 15px;
+                font-family: 'Orbitron', monospace;
+                font-weight: bold;
+                text-align: center;
+                z-index: 10000;
+                box-shadow: 0 0 50px rgba(255, 0, 255, 0.7);
+                backdrop-filter: blur(10px);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                max-width: 500px;
+                animation: alertSlideIn 0.5s ease-out;
+            `;
+            
+            alert.innerHTML = `
+                <div style="margin-bottom: 20px;">${message}</div>
+                <button onclick="this.parentElement.remove()" 
+                        style="
+                            background: rgba(255, 255, 255, 0.2);
+                            border: 1px solid rgba(255, 255, 255, 0.5);
+                            color: white;
+                            padding: 10px 25px;
+                            border-radius: 25px;
+                            cursor: pointer;
+                            font-family: 'Orbitron', monospace;
+                            font-weight: bold;
+                            transition: all 0.3s ease;
+                        "
+                        onmouseover="this.style.background='rgba(255, 255, 255, 0.3)'"
+                        onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'">
+                    TAMAM
+                </button>
+            `;
+
+            if (!document.querySelector('#alertAnimations')) {
+                const style = document.createElement('style');
+                style.id = 'alertAnimations';
+                style.textContent = `
+                    @keyframes alertSlideIn {
+                        from {
+                            opacity: 0;
+                            transform: translate(-50%, -50%) scale(0.8);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translate(-50%, -50%) scale(1);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            document.body.appendChild(alert);
+
+            setTimeout(() => {
+                if (alert.parentElement) {
+                    alert.style.opacity = '0';
+                    alert.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                    setTimeout(() => alert.remove(), 300);
+                }
+            }, 5000);
+        }
+
+        function optimizeScroll() {
+            let ticking = false;
+
+            function updateScroll() {
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateScroll);
+                    ticking = true;
+                }
+            });
+        }
+
+        function optimizeTouch() {
+            document.querySelectorAll('.nav-btn, .hero-cta, .service-btn, .social-btn, .filter-btn').forEach(btn => {
+                btn.addEventListener('touchstart', () => {
+                    btn.style.transform = 'scale(0.95)';
+                });
+                btn.addEventListener('touchend', () => {
+                    btn.style.transform = 'scale(1)';
+                });
+            });
+
+            document.addEventListener('touchstart', (e) => {
+                if (e.touches.length > 1) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            document.body.style.overscrollBehavior = 'contain';
+        }
+
+        function optimizeAnimations() {
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.fade-in, .hero-title, .brand-logo').forEach(el => {
+                    el.style.animation = 'none';
+                });
+                document.querySelector('.brand-logo').style.animation = 'gradientShift 6s ease infinite';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('[style*="position: fixed"]').forEach(el => {
+                    if (el.id !== 'loadingScreen') el.remove();
+                });
+            }
+
+            const shortcuts = {
+                '1': 'home',
+                '2': 'services',
+                '3': 'about',
+                '4': 'contact'
+            };
+
+            if (shortcuts[e.key] && !isLoading) {
+                showSection(shortcuts[e.key]);
+            }
+        });
+
+        if ('ontouchstart' in window) {
+            document.body.style.webkitTouchCallout = 'none';
+            document.body.style.webkitUserSelect = 'none';
+        }
+
+        window.addEventListener('load', () => {
+            if (window.performance) {
+                const perfData = window.performance.timing;
+                const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+                console.log(`🚀 Site yükleme süresi: ${loadTime}ms`);
+            }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            const video = document.getElementById('heroVideo');
+            if (video) {
+                if (document.hidden) {
+                    video.pause();
+                } else {
+                    video.play().catch(e => console.log('Video play prevented'));
+                }
+            }
+        });
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initSite);
+        } else {
+            initSite();
+        }
+    </script>
+</body>
+</html>
