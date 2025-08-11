@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furkatech - Global Digital Solutions & Innovation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --dark-color: #0f172a;
+            --light-color: #f8fafc;
+            --gray-color: #64748b;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.7;
+            color: var(--dark-color);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            animation: loadingPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            animation: logoRotate 4s ease-in-out infinite;
+        }
+
+        @keyframes logoRotate {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            position: relative;
+            width: 30px;
+            height: 30px;
+        }
+
+        .mobile-menu-btn span {
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background: var(--dark-color);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn span:nth-child(1) { top: 6px; }
+        .mobile-menu-btn span:nth-child(2) { top: 13px; }
+        .mobile-menu-btn span:nth-child(3) { top: 20px; }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 13px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 13px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            transition: left 0.3s ease;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mobile-menu-links li {
+            margin-bottom: 1.5rem;
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active .mobile-menu-links li {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .mobile-menu-links li:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu-links li:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu-links li:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-menu-links li:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-menu-links li:nth-child(5) { transition-delay: 0.5s; }
+
+        .mobile-menu-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-links a:hover {
+            background: var(--light-color);
+            color: var(--primary-color);
+            transform: translateX(10px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(37,99,235,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: floatUp 10s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            opacity: 0;
+            animation: slideUp 1s ease 0.2s forwards;
+        }
+
+        .hero-text .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: #cbd5e1;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: slideUp 1s ease 0.4s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.6s forwards;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            position: relative;
+            opacity: 0;
+            animation: slideUp 1s ease 0.8s forwards;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.3rem;
+            color: var(--gray-color);
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-light);
+            border: 1px solid #f1f5f9;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-heavy);
+            border-color: var(--primary-color);
+        }
+
+        .service-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-primary);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .service-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--gray-color);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: var(--gray-color);
+        }
+
+        .service-features li i {
+            color: var(--success-color);
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .service-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+            color: var(--secondary-color);
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 0;
+            background: var(--light-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            color: var(--gray-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .about-feature i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .about-feature h4 {
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-image {
+            background: var(--gradient-primary);
+            border-radius: 25px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image i {
+            font-size: 5rem;
+            color: white;
+            opacity: 0.3;
+        }
+
+        .floating-cards {
+            position: absolute;
+            top: 20px;
+            right: -20px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-medium);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating-cards h5 {
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .floating-cards p {
+            color: var(--success-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 6rem 0;
+            background: var(--dark-color);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .stat-item .number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item .label {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 0;
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+        }
+
+        .contact-info p {
+            color: var(--gray-color);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .contact-item-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .contact-item-info h4 {
+            color: var(--dark-color);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item-info p {
+            color: var(--gray-color);
+            margin: 0;
+        }
+
+        .contact-form {
+            background: var(--light-color);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .social-link i {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+            color: #cbd5e1;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content,
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-cards {
+                position: static;
+                margin-top: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--gradient-primary);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <i class="fas fa-code"></i> FURKATECH
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-rocket"></i>
+                FURKATECH
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#home">Ana Sayfa</a>
+                <a href="#services">Hizmetler</a>
+                <a href="#about">Hakkımızda</a>
+                <a href="#contact">İletişim</a>
+                <a href="#contact" class="cta-button">
+                    <i class="fas fa-paper-plane"></i>
+                    Proje Başlat
+                </a>
+            </nav>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-menu-links">
+                <li><a href="#home"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="#services"><i class="fas fa-cogs"></i> Hizmetler</a></li>
+                <li><a href="#about"><i class="fas fa-users"></i> Hakkımızda</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> İletişim</a></li>
+                <li><a href="#contact" class="cta-button"><i class="fas fa-rocket"></i> Proje Başlat</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-particles" id="heroParticles"></div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Global <span class="gradient-text">Dijital</span><br>
+                    Çözümlerle<br>
+                    Geleceği Şekillendirin
+                </h1>
+                <p>
+                    Web geliştirmeden ERP çözümlerine, dijital pazarlamadan masaüstü uygulamalarına kadar 
+                    enterprise seviyede teknoloji çözümleri. Dünya çapında 500+ başarılı proje deneyimi.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Ücretsiz Konsültasyon
+                    </a>
+                    <a href="#services" class="btn-secondary">
+                        <i class="fas fa-play"></i>
+                        Hizmetleri Keşfet
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Başarılı Proje</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Global Müşteri</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">Müşteri Memnuniyeti</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">7/24</span>
+                        <span class="stat-label">Teknik Destek</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Premium Teknoloji Hizmetleri</h2>
+                <p>Enterprise seviyede, global standartlarda çözümler sunuyoruz</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Web Geliştirme</h3>
+                    <p>Modern, ölçeklenebilir ve güvenli web uygulamaları. React, Vue.js, Angular ve Node.js teknolojileri ile enterprise seviyede çözümler.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Progressive Web Apps (PWA)</li>
+                        <li><i class="fas fa-check"></i> E-commerce Platformları</li>
+                        <li><i class="fas fa-check"></i> Custom CMS Çözümleri</li>
+                        <li><i class="fas fa-check"></i> API Entegrasyonları</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Masaüstü Uygulamaları</h3>
+                    <p>Cross-platform masaüstü uygulamaları. Electron, .NET, Qt teknolojileri ile Windows, Mac ve Linux platformları için çözümler.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Cross-Platform Uygulamalar</li>
+                        <li><i class="fas fa-check"></i> Native Performance</li>
+                        <li><i class="fas fa-check"></i> Offline Çalışma Desteği</li>
+                        <li><i class="fas fa-check"></i> Auto-Update Sistemleri</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>ERP Çözümleri</h3>
+                    <p>Özelleştirilmiş ERP sistemleri. SAP, Oracle, Microsoft Dynamics entegrasyonları ve custom ERP geliştirme hizmetleri.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Custom ERP Geliştirme</li>
+                        <li><i class="fas fa-check"></i> SAP Entegrasyonları</li>
+                        <li><i class="fas fa-check"></i> İş Süreçleri Optimizasyonu</li>
+                        <li><i class="fas fa-check"></i> Raporlama & Analytics</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Dijital Pazarlama</h3>
+                    <p>ROI odaklı dijital pazarlama stratejileri. SEO, SEM, sosyal medya yönetimi ve performance marketing çözümleri.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> SEO & Content Marketing</li>
+                        <li><i class="fas fa-check"></i> PPC & Display Advertising</li>
+                        <li><i class="fas fa-check"></i> Social Media Management</li>
+                        <li><i class="fas fa-check"></i> Analytics & Reporting</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3>Google Ads Yönetimi</h3>
+                    <p>Profesyonel Google Ads kampanya yönetimi. Optimizasyon, A/B testing ve conversion tracking ile maksimum ROI sağlıyoruz.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Campaign Setup & Management</li>
+                        <li><i class="fas fa-check"></i> Keyword Research & Analysis</li>
+                        <li><i class="fas fa-check"></i> Landing Page Optimization</li>
+                        <li><i class="fas fa-check"></i> Performance Tracking</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud & DevOps</h3>
+                    <p>AWS, Azure, Google Cloud çözümleri. CI/CD pipelines, containerization ve infrastructure as code hizmetleri.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Cloud Migration</li>
+                        <li><i class="fas fa-check"></i> DevOps Implementation</li>
+                        <li><i class="fas fa-check"></i> Monitoring & Security</li>
+                        <li><i class="fas fa-check"></i> Cost Optimization</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        Detayları İncele <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
+                    <h2>Global Teknoloji Lideri</h2>
+                    <p>
+                        2015'ten beri global pazarda faaliyet gösteren Furkatech, Fortune 500 şirketlerinden 
+                        startup'lara kadar geniş bir yelpazede teknoloji çözümleri sunuyor.
+                    </p>
+                    <p>
+                        Silicon Valley standartlarında geliştirme süreçleri, agile metodolojiler ve 
+                        cutting-edge teknolojiler kullanarak müşterilerimizin dijital dönüşüm yolculuğunda 
+                        güvenilir partneri oluyoruz.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-rocket"></i>
+                            <h4>Innovation First</h4>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Enterprise Security</h4>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-users"></i>
+                            <h4>Expert Team</h4>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-globe"></i>
+                            <h4>Global Reach</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-visual animate-on-scroll">
+                    <div class="about-image">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="floating-cards">
+                        <h5>Active Projects</h5>
+                        <p>127+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid animate-on-scroll">
+                <div class="stat-item">
+                    <i class="fas fa-trophy"></i>
+                    <span class="number" data-count="500">0</span>
+                    <span class="label">Tamamlanan Proje</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-globe"></i>
+                    <span class="number" data-count="50">0</span>
+                    <span class="label">Global Müşteri</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <span class="number" data-count="25">0</span>
+                    <span class="label">Uzman Ekip</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-clock"></i>
+                    <span class="number" data-count="24">0</span>
+                    <span class="label">Saat Destek</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info animate-on-scroll">
+                    <h2>Projenizi Hayata Geçirelim</h2>
+                    <p>
+                        Global standartlarda teknoloji çözümleri için bizimle iletişime geçin. 
+                        Ücretsiz konsültasyon ve proje analizi hizmeti sunuyoruz.
+                    </p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-item-info">
+                                <h4>Email</h4>
+                                <p>info@furkatech.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-item-info">
+                                <h4>Telefon</h4>
+                                <p>+90 555 FURKA-TECH</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-item-info">
+                                <h4>Adres</h4>
+                                <p>İstanbul / Ankara / Global</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="contact-item-info">
+                                <h4>Destek</h4>
+                                <p>7/24 Technical Support</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form animate-on-scroll" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ad Soyad *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-posta *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Hizmet Seçiniz</label>
+                        <select id="service" name="service">
+                            <option value="">Hizmet seçin</option>
+                            <option value="web">Web Geliştirme</option>
+                            <option value="desktop">Masaüstü Uygulamaları</option>
+                            <option value="erp">ERP Çözümleri</option>
+                            <option value="marketing">Dijital Pazarlama</option>
+                            <option value="ads">Google Ads</option>
+                            <option value="cloud">Cloud & DevOps</option>
+                            <option value="all">Tüm Hizmetler</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget">Proje Bütçesi</label>
+                        <select id="budget" name="budget">
+                            <option value="">Bütçe aralığı seçin</option>
+                            <option value="5k-15k">$5,000 - $15,000</option>
+                            <option value="15k-50k">$15,000 - $50,000</option>
+                            <option value="50k-100k">$50,000 - $100,000</option>
+                            <option value="100k+">$100,000+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Proje Detayları *</label>
+                        <textarea id="message" name="message" placeholder="Projeniz hakkında detaylı bilgi veriniz..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Ücretsiz Konsültasyon Al
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FURKATECH</h3>
+                    <p>
+                        Global teknoloji çözümleri ile işletmelerin dijital dönüşüm yolculuğunda 
+                        güvenilir partneri. Silicon Valley standartlarında geliştirme süreçleri.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Hizmetler</h3>
+                    <ul>
+                        <li><a href="#">Web Geliştirme</a></li>
+                        <li><a href="#">Masaüstü Uygulamaları</a></li>
+                        <li><a href="#">ERP Çözümleri</a></li>
+                        <li><a href="#">Dijital Pazarlama</a></li>
+                        <li><a href="#">Google Ads</a></li>
+                        <li><a href="#">Cloud & DevOps</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Şirket</h3>
+                    <ul>
+                        <li><a href="#">Hakkımızda</a></li>
+                        <li><a href="#">Ekibimiz</a></li>
+                        <li><a href="#">Kariyer</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Destek</h3>
+                    <ul>
+                        <li><a href="#">İletişim</a></li>
+                        <li><a href="#">SSS</a></li>
+                        <li><a href="#">Teknik Destek</a></li>
+                        <li><a href="#">Dökümanlar</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 FURKATECH. All rights reserved. | Global Digital Solutions Leader</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const scrollProgress = document.getElementById('scrollProgress');
+            const backToTop = document.getElementById('backToTop');
+            
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                backToTop.classList.add('visible');
+            } else {
+                header.classList.remove('scrolled');
+                backToTop.classList.remove('visible');
+            }
+
+            // Scroll Progress Bar
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Back to Top
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Particle Animation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = Math.random() * 4 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDuration = Math.random() * 8 + 8 + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.getElementById('heroParticles').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 16000);
+        }
+
+        // Create particles continuously
+        setInterval(createParticle, 300);
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 20);
+        }
+
+        // Trigger counter animations when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.number');
+                    counters.forEach(counter => {
+                        animateCounter(counter);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Form validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !message) {
+                alert('Lütfen tüm zorunlu alanları doldurun.');
+                return;
+            }
+
+            // Simulate form submission
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Mesajınız İletildi!';
+                submitBtn.style.background = 'var(--success-color)';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = 'var(--gradient-primary)';
+                    submitBtn.disabled = false;
+                    this.reset();
+                    
+                    // Show success message
+                    alert('Teşekkürler! Mesajınız başarıyla iletildi. 24 saat içinde size dönüş yapacağız.');
+                }, 2000);
+            }, 2000);
+        });
+
+        // Service Card Animations
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Hero Stats Animation
+        document.querySelectorAll('.stat-card').forEach((card, index) => {
+            card.style.animationDelay = `${1 + index * 0.2}s`;
+        });
+
+        // Dynamic Background Animation
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.style.position = 'absolute';
+            element.style.width = Math.random() * 20 + 10 + 'px';
+            element.style.height = element.style.width;
+            element.style.background = 'rgba(59, 130, 246, 0.1)';
+            element.style.borderRadius = '50%';
+            element.style.left = Math.random() * 100 + '%';
+            element.style.top = '100%';
+            element.style.pointerEvents = 'none';
+            element.style.animation = 'floatUp 15s linear infinite';
+            
+            document.querySelector('.hero').appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 15000);
+        }
+
+        // Create floating elements periodically
+        setInterval(createFloatingElement, 2000);
+
+        // Parallax Effect
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero-visual, .about-visual');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Typing Animation for Hero Text
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing animation after page load
+        setTimeout(() => {
+            const heroTitle = document.querySelector('.hero-text h1');
+            if (heroTitle && window.innerWidth > 768) {
+                const originalText = heroTitle.textContent;
+                heroTitle.style.opacity = '1';
+                // Uncomment below line if you want typing effect
+                // typeWriter(heroTitle, originalText, 50);
+            }
+        }, 2000);
+
+        // Service Card Stagger Animation
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.6s ease';
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Intersection Observer for Service Cards
+        const servicesObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const cards = entry.target.querySelectorAll('.service-card');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                    servicesObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const servicesSection = document.querySelector('.services');
+        if (servicesSection) {
+            servicesObserver.observe(servicesSection);
+        }
+
+        // Dynamic Navbar Background
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+            const header = document.getElementById('header');
+            
+            if (currentScroll > lastScrollTop && currentScroll > 100) {
+                // Scrolling down
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                header.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // Add cursor trail effect
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function createCursorTrail() {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: var(--primary-color);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                opacity: 0.7;
+                transition: all 0.3s ease;
+                left: ${mouseX}px;
+                top: ${mouseY}px;
+            `;
+            
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                trail.style.opacity = '0';
+                trail.style.transform = 'scale(0)';
+                setTimeout(() => trail.remove(), 300);
+            }, 100);
+        }
+
+        // Create cursor trail on mouse move
+        let trailTimer;
+        document.addEventListener('mousemove', function() {
+            clearTimeout(trailTimer);
+            trailTimer = setTimeout(createCursorTrail, 20);
+        });
+
+        // Add interactive hover effects to buttons
+        document.querySelectorAll('.btn-primary, .btn-secondary, .cta-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add ripple effect to buttons
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement('span');
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+            circle.classList.add('ripple');
+
+            const rippleStyle = document.createElement('style');
+            rippleStyle.textContent = `
+                .ripple {
+                    position: absolute;
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 600ms linear;
+                    background-color: rgba(255, 255, 255, 0.6);
+                }
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            
+            if (!document.querySelector('#ripple-style')) {
+                rippleStyle.id = 'ripple-style';
+                document.head.appendChild(rippleStyle);
+            }
+
+            const rippleElement = button.getElementsByClassName('ripple')[0];
+            if (rippleElement) {
+                rippleElement.remove();
+            }
+
+            button.appendChild(circle);
+        }
+
+        // Add ripple effect to all buttons
+        document.querySelectorAll('.btn-primary, .btn-secondary, .submit-btn').forEach(button => {
+            button.addEventListener('click', createRipple);
+        });
+
+        // Add loading states to form inputs
+        document.querySelectorAll('input, textarea, select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.borderColor = 'var(--primary-color)';
+                this.style.boxShadow = '0 0 0 3px rgba(37, 99, 235, 0.1)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.style.borderColor = '#e2e8f0';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Performance optimization - Throttle scroll events
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
+        // Apply throttling to scroll events
+        window.addEventListener('scroll', throttle(function() {
+            // Scroll-dependent animations here
+        }, 16)); // ~60fps
+
+        // Preload critical images
+        function preloadImages() {
+            const imageUrls = [
+                // Add any critical image URLs here
+            ];
+            
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        }
+
+        preloadImages();
+
+        // Initialize all animations after DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add entrance animations to key elements
+            const elementsToAnimate = document.querySelectorAll('.logo, .nav-links a, .hero-text, .hero-visual');
+            elementsToAnimate.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Add error handling for animations
+        window.addEventListener('error', function(e) {
+            console.log('Animation error caught:', e);
+        });
+
+        // Final initialization
+        console.log('🚀 FURKATECH website loaded successfully!');
+    </script>
+</body>
+</html>

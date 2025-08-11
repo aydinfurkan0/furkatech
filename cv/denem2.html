@@ -1,0 +1,1662 @@
+
+</head>
+<body>
+    <!-- Yükleme Ekranı -->
+    <div class="yukleme-ekrani" id="yuklemeEkrani">
+        <div class="yukleme-text">YÜKLENIYOR...</div>
+        <div class="yukleme-cubuk">
+            <div class="yukleme-ilerleme"></div>
+        </div>
+    </div>
+
+    <!-- Navigasyon -->
+    <div class="nav-container">
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-btn aktif">
+                <i class="fas fa-home"></i> Ana Sayfa
+            </a>
+            <button class="nav-btn" onclick="hizmetlereGit()">
+                <i class="fas fa-cogs"></i> Hizmetler
+            </button>
+            <button class="nav-btn" onclick="hakkindayaGit()">
+                <i class="fas fa-info-circle"></i> Hakkımızda
+            </button>
+            <a href="#contact" class="nav-btn iletisim-btn">
+                <i class="fas fa-envelope"></i> İletişim
+            </a>
+        </nav>
+    </div>
+
+    <!-- Ana Sayfa - SABİT İÇERİK -->
+    
+    <!-- Hero Video Bölümü -->
+    <section class="hero-bolum">
+        <video class="hero-video" autoplay muted loop playsinline id="heroVideo">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-icerik">
+            <h1 class="hero-baslik">SİBER GELECEK</h1>
+            <p class="hero-altbaslik">Dijital Mükemmellik Sizi Bekliyor</p>
+            <button class="hero-buton" onclick="hizmetlereGit()">Hizmetleri Keşfet</button>
+        </div>
+    </section>
+
+    <!-- Marka Bölümü - SABİT -->
+    <section class="marka-bolum">
+        <div class="marka-arkaplan"></div>
+        <div class="marka-icerik">
+            <h2 class="marka-logo">RETRO WAVE</h2>
+            <p class="marka-slogan">Dijital İnovasyon Ajansı</p>
+            <p class="marka-aciklama">
+                Geçmişin nostaljik estetiği ile geleceğin teknolojisini birleştirerek, markanız için 
+                benzersiz dijital deneyimler yaratıyoruz. Synthwave'in neon dünyasında, modern 
+                çözümlerle işinizi zirveye taşıyoruz. İstanbul'un önde gelen web tasarım ajansıyız.
+            </p>
+            
+            <div class="marka-ozellikler">
+                <div class="marka-ozellik">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Yıldırım Performans</h3>
+                    <p>Ultra-hızlı yükleme ve optimal kullanıcı deneyimi ile rakiplerinizden öne geçin</p>
+                </div>
+                <div class="marka-ozellik">
+                    <i class="fas fa-palette"></i>
+                    <h3>Retro-Gelecek Tasarım</h3>
+                    <p>80'ler estetiği ile modern responsive tasarım anlayışının mükemmel birleşimi</p>
+                </div>
+                <div class="marka-ozellik">
+                    <i class="fas fa-code"></i>
+                    <h3>Temiz Mimari</h3>
+                    <p>Optimize edilmiş, sürdürülebilir ve ölçeklenebilir kod yapısı ile uzun vadeli çözümler</p>
+                </div>
+                <div class="marka-ozellik">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>SEO Uzmanlığı</h3>
+                    <p>Google'da üst sıralarda görünürlük ve organik trafik artışı garantisi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hizmetler Bölümü - DİNAMİK -->
+    <section class="dinamik-icerik" id="hizmetlerBolumu">
+        <div class="bolum-baslik">
+            <h2 class="bolum-ana-baslik">Hizmetlerimiz</h2>
+            <p class="bolum-alt-baslik">Premium Dijital Çözümler</p>
+        </div>
+        
+        <div class="hizmetler-grid" id="hizmetlerGrid">
+            <!-- Dinamik olarak yüklenecek -->
+        </div>
+    </section>
+
+    <!-- Hakkımızda Bölümü - DİNAMİK -->
+    <section class="dinamik-icerik" id="hakkindaBolumu">
+        <div class="bolum-baslik">
+            <h2 class="bolum-ana-baslik">Hakkımızda</h2>
+            <p class="bolum-alt-baslik">Hikayemiz ve Vizyonumuz</p>
+        </div>
+        
+        <div class="hakkinda-icerik">
+            <div class="hakkinda-giris">
+                <p>
+                    <strong>RETRO WAVE</strong>, dijital dünyada nostaljik estetik ile çağdaş teknolojinin mükemmel 
+                    birleşimini yaratmak için <strong>2019 yılında İstanbul'da kuruldu</strong>. Synthwave'in büyülü atmosferi 
+                    ile modern web teknolojilerini harmanlayarak, markalara unutulmaz dijital 
+                    kimlikler kazandırıyoruz.
+                </p>
+            </div>
+
+            <div class="hakkinda-bolumler" id="hakkindaBolumler">
+                <!-- Dinamik olarak yüklenecek -->
+            </div>
+
+            <div class="istatistik-grid" id="istatistikGrid">
+                <!-- Dinamik olarak yüklenecek -->
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim Bölümü - SABİT -->
+    <section class="dinamik-icerik" id="contact" style="opacity: 1; transform: translateY(0);">
+        <div class="bolum-baslik">
+            <h2 class="bolum-ana-baslik">İletişim</h2>
+            <p class="bolum-alt-baslik">Bizimle İletişime Geçin</p>
+        </div>
+        
+        <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px;">
+            <div style="background: var(--cam-arkaplan); border: 1px solid var(--kenar-isik); border-radius: 20px; padding: 40px; backdrop-filter: blur(10px);">
+                <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                    <i class="fas fa-envelope" style="font-size: 2rem; color: var(--neon-mavi); margin-right: 20px; width: 40px;"></i>
+                    <div>
+                        <h4 style="color: var(--neon-mavi); font-size: 1.2rem; margin-bottom: 5px;">E-posta</h4>
+                        <p style="color: #ccc; font-size: 1.1rem;">info@retrowave.digital</p>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                    <i class="fas fa-phone" style="font-size: 2rem; color: var(--neon-mavi); margin-right: 20px; width: 40px;"></i>
+                    <div>
+                        <h4 style="color: var(--neon-mavi); font-size: 1.2rem; margin-bottom: 5px;">Telefon</h4>
+                        <p style="color: #ccc; font-size: 1.1rem;">+90 555 RETRO (73876)</p>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--neon-mavi); margin-right: 20px; width: 40px;"></i>
+                    <div>
+                        <h4 style="color: var(--neon-mavi); font-size: 1.2rem; margin-bottom: 5px;">Adres</h4>
+                        <p style="color: #ccc; font-size: 1.1rem;">Cyber Tower, İstanbul, Türkiye</p>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <i class="fas fa-clock" style="font-size: 2rem; color: var(--neon-mavi); margin-right: 20px; width: 40px;"></i>
+                    <div>
+                        <h4 style="color: var(--neon-mavi); font-size: 1.2rem; margin-bottom: 5px;">Çalışma Saatleri</h4>
+                        <p style="color: #ccc; font-size: 1.1rem;">24/7 Digital Support</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: var(--cam-arkaplan); border: 1px solid var(--kenar-isik); border-radius: 20px; padding: 40px; backdrop-filter: blur(10px);">
+                <h3 style="color: var(--neon-mavi); margin-bottom: 30px; font-family: 'Orbitron', monospace;">
+                    <i class="fas fa-rocket" style="margin-right: 10px;"></i>
+                    Projenizi Başlatalım
+                </h3>
+                <p style="color: #ddd; line-height: 1.8; margin-bottom: 30px;">
+                    Dijital dünyada fark yaratmaya hazır mısınız? Retro-futuristik tasarımlar ve 
+                    modern teknoloji ile markanızı zirveye taşıyalım. Ücretsiz konsültasyon için 
+                    bugün iletişime geçin.
+                </p>
+                
+                <div style="background: var(--cam-arkaplan); padding: 25px; border-radius: 15px; border: 1px solid var(--kenar-isik); margin-bottom: 30px;">
+                    <h4 style="color: var(--neon-sari); margin-bottom: 15px;">
+                        <i class="fas fa-gift"></i> Özel Fırsat
+                    </h4>
+                    <p style="color: #ccc;">
+                        İlk 10 müşterimize %25 indirim! Synthwave temalı premium web sitesi 
+                        sadece ₺3.375'den başlayan fiyatlarla.
+                    </p>
+                </div>
+
+                <button onclick="iletisimTiklandi()" style="
+                    background: linear-gradient(45deg, var(--neon-sari), #ff8000);
+                    border: none;
+                    color: var(--koyu-arkaplan);
+                    padding: 18px 40px;
+                    border-radius: 35px;
+                    cursor: pointer;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    font-size: 1.1rem;
+                    letter-spacing: 2px;
+                    transition: all 0.4s ease;
+                    width: 100%;
+                " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 30px rgba(255, 255, 0, 0.6)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
+                    <i class="fas fa-paper-plane"></i> Teklif Al
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-icerik" id="footerIcerik">
+            <!-- Dinamik olarak yüklenecek -->
+        </div>
+        <div class="footer-alt">
+            <p>&copy; 2025 RETRO WAVE Dijital Ajansı. Tüm hakları saklıdır. <i class="fas fa-heart" style="color: var(--neon-pembe);"></i> İstanbul'da yapıldı</p>
+        </div>
+    </footer>
+
+    <script>
+        // Veri Kaynakları
+        const hizmetlerVerisi = [
+            {
+                ikon: 'fas fa-laptop-code',
+                baslik: 'Web Tasarım',
+                aciklama: 'Modern, responsive ve SEO uyumlu web siteleri. Retro wave teması ile benzersiz tasarımlar.',
+                ozellikler: ['Responsive Tasarım', 'SEO Optimizasyonu', 'Hızlı Yükleme', 'Tarayıcı Uyumluluğu'],
+                fiyat: '₺4.500'
+            },
+            {
+                ikon: 'fas fa-shopping-cart',
+                baslik: 'E-Ticaret Siteleri',
+                aciklama: 'Güçlü online mağazalar ve ödeme sistemleri. Satışlarınızı artıracak profesyonel e-ticaret çözümleri.',
+                ozellikler: ['Ödeme Entegrasyonu', 'Stok Yönetimi', 'Mobil Uyumlu', 'Analitik Panel'],
+                fiyat: '₺12.000'
+            },
+            {
+                ikon: 'fas fa-mobile-alt',
+                baslik: 'Mobil Uygulamalar',
+                aciklama: 'iOS ve Android için kullanıcı dostu mobil uygulamalar. Native performans ve modern tasarım.',
+                ozellikler: ['Native Performans', 'Push Bildirimleri', 'Offline Destek', 'App Store Hazır'],
+                fiyat: '₺18.000'
+            },
+            {
+                ikon: 'fas fa-paint-brush',
+                baslik: 'Kurumsal Kimlik',
+                aciklama: 'Logo tasarımı ve kapsamlı kurumsal kimlik paketleri. Markanızı öne çıkaracak profesyonel tasarımlar.',
+                ozellikler: ['Logo Tasarım', 'Marka Rehberi', 'Basılı Materyaller', 'Dijital Materyaller'],
+                fiyat: '₺3.500'
+            },
+            {
+                ikon: 'fas fa-search',
+                baslik: 'SEO ve Analitik',
+                aciklama: 'Google\'da üst sıralarda görünürlük ve detaylı performans analizi. Organik trafik artışı garantisi.',
+                ozellikler: ['Anahtar Kelime Araştırması', 'Sayfa İçi SEO', 'Link Building', 'Aylık Raporlar'],
+                fiyat: '₺2.800'
+            },
+            {
+                ikon: 'fas fa-video',
+                baslik: 'Video Prodüksiyon',
+                aciklama: 'Retro wave tarzı tanıtım videoları ve motion graphics. Markanızı görsel olarak öne çıkaracak videolar.',
+                ozellikler: ['Senaryo Yazımı', '3D Animasyon', 'Renk Düzeltme', 'Ses Tasarımı'],
+                fiyat: '₺8.500'
+            },
+            {
+                ikon: 'fas fa-share-alt',
+                baslik: 'Sosyal Medya',
+                aciklama: 'Retro temalı içerik üretimi ve kapsamlı sosyal medya stratejisi. Takipçi ve etkileşim artışı.',
+                ozellikler: ['İçerik Üretimi', 'Yayın Programı', 'Etkileşim Analizi', 'Reklam Kampanyaları'],
+                fiyat: '₺2.200'
+            },
+            {
+                ikon: 'fas fa-server',
+                baslik: 'Hosting ve Bakım',
+                aciklama: 'Güvenli cloud hosting ve 7/24 teknik destek. Sitenizin her zaman erişilebilir olmasını garantiliyoruz.',
+                ozellikler: ['SSD Depolama', 'Günlük Yedekleme', 'SSL Sertifikası', '%99.9 Uptime'],
+                fiyat: '₺450/ay'
+            }
+        ];
+
+        const hakkindaVerisi = {
+            bolumler: [
+                {
+                    baslik: 'Vizyonumuz',
+                    icerik: 'Dijital dünyada nostaljik estetik ile modern teknolojinin mükemmel birleşimini yaratmak. Her projede 80\'lerin neon renkli atmosferini günümüzün teknolojik imkanları ile harmanlayarak, markalara unutulmaz dijital kimlikler kazandırıyoruz.'
+                },
+                {
+                    baslik: 'Misyonumuz', 
+                    icerik: 'İstanbul ve Türkiye\'deki işletmelerin dijital varlıklarını güçlendirerek, onları rekabette öne çıkarmak. Retro-futuristik tasarım anlayışımız ile sadece görsel olarak etkileyici değil, aynı zamanda işlevsel ve kullanıcı dostu çözümler sunuyoruz.'
+                },
+                {
+                    baslik: 'Yaklaşımımız',
+                    icerik: 'Her proje benzersizdir ve kişiye özel yaklaşım gerektirir. Synthwave estetiği, temiz kod yapısı ve modern UX/UI prensiplerini birleştirerek, teknoloji ve sanatın buluştuğu noktada projeler üretiyoruz. SEO ve performans odaklı çalışırız.'
+                },
+                {
+                    baslik: 'Ekibimiz',
+                    icerik: 'Deneyimli web tasarımcıları, full-stack geliştiriciler, UI/UX uzmanları ve dijital pazarlama stratejistlerinden oluşan İstanbul merkezli ekibimiz, her projede mükemmelliği hedefliyor. Retro kültürüne tutkuyla bağlı ekibimiz, bu sevgiyi her çalışmaya yansıtıyor.'
+                }
+            ],
+            istatistikler: [
+                { sayi: '350+', etiket: 'Tamamlanan Proje' },
+                { sayi: '%99', etiket: 'Müşteri Memnuniyeti' },
+                { sayi: '6', etiket: 'Yıl Deneyim' },
+                { sayi: '24/7', etiket: 'Teknik Destek' },
+                { sayi: '120+', etiket: 'Mutlu Müşteri' },
+                { sayi: '22', etiket: 'Ekip Üyesi' }
+            ]
+        };
+
+        const footerVerisi = {
+            sirket: {
+                baslik: 'RETRO WAVE',
+                aciklama: 'İstanbul merkezli dijital ajans. Retro estetik ile modern teknolojinin buluştuğu yaratıcı çözümler. Web tasarım, SEO ve dijital pazarlama uzmanı.',
+                sosyal: [
+                    { ikon: 'fab fa-instagram', isim: 'Instagram' },
+                    { ikon: 'fab fa-twitter', isim: 'Twitter' },
+                    { ikon: 'fab fa-youtube', isim: 'YouTube' },
+                    { ikon: 'fab fa-linkedin', isim: 'LinkedIn' }
+                ]
+            },
+            hizmetler: {
+                baslik: 'Hizmetlerimiz',
+                linkler: [
+                    'Web Tasarım',
+                    'E-Ticaret',
+                    'Mobil Uygulama',
+                    'SEO ve Analitik',
+                    'Sosyal Medya',
+                    'Video Prodüksiyon'
+                ]
+            },
+            sirket_bilgi: {
+                baslik: 'Şirket',
+                linkler: [
+                    'Hakkımızda',
+                    'Ekibimiz', 
+                    'Kariyer',
+                    'Blog',
+                    'Referanslar',
+                    'Portfolyo'
+                ]
+            },
+            yasal: {
+                baslik: 'Yasal',
+                linkler: [
+                    'Gizlilik Politikası',
+                    'Kullanım Şartları',
+                    'Çerez Politikası',
+                    'KVKK',
+                    'İptal ve İade',
+                    'Mesafeli Satış'
+                ]
+            }
+        };
+
+        // Global Değişkenler
+        let yukleniyor = true;
+        let hizmetlerYuklendi = false;
+        let hakkindaYuklendi = false;
+        let footerYuklendi = false;
+
+        // Site Başlatma
+        function siteBaslat() {
+            // Video başlat
+            videoBaslat();
+            
+            // Footer'ı hemen yükle
+            footerYukle();
+            
+            // Event listener'ları kur
+            eventKur();
+            
+            // Yükleme ekranını kaldır
+            setTimeout(() => {
+                yuklemeEkraniGizle();
+                yukleniyor = false;
+            }, 1000);
+        }
+
+        function yuklemeEkraniGizle() {
+            const yukleyici = document.getElementById('yuklemeEkrani');
+            yukleyici.classList.add('gizle');
+            setTimeout(() => {
+                yukleyici.remove();
+            }, 600);
+        }
+
+        // Video Başlatma
+        function videoBaslat() {
+            const video = document.getElementById('heroVideo');
+            if (!video) return;
+
+            video.muted = true;
+            video.playsInline = true;
+            video.preload = 'metadata';
+
+            // Otomatik oynat
+            video.addEventListener('loadeddata', () => {
+                video.play().catch(e => console.log('Video otomatik oynatma engellendi'));
+            });
+
+            // Sayfa görünürlük kontrolü
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    video.pause();
+                } else {
+                    video.play().catch(e => console.log('Video oynatma engellendi'));
+                }
+            });
+        }
+
+        // Hizmetler Bölümüne Git
+        function hizmetlereGit() {
+            // Hizmetleri yükle (ilk defa ise)
+            if (!hizmetlerYuklendi) {
+                hizmetlerYukle();
+                hizmetlerYuklendi = true;
+            }
+
+            // Scroll yap
+            document.getElementById('hizmetlerBolumu').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Hakkında Bölümüne Git
+        function hakkindayaGit() {
+            // Hakkında'yı yükle (ilk defa ise)
+            if (!hakkindaYuklendi) {
+                hakkindaYukle();
+                hakkindaYuklendi = true;
+            }
+
+            // Scroll yap
+            document.getElementById('hakkindaBolumu').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Hizmetler Yükle
+        function hizmetlerYukle() {
+            const grid = document.getElementById('hizmetlerGrid');
+            const bolum = document.getElementById('hizmetlerBolumu');
+
+            grid.innerHTML = hizmetlerVerisi.map((hizmet, index) => `
+                <div class="hizmet-kart fade-in" style="animation-delay: ${index * 0.1}s;">
+                    <div class="hizmet-ikon">
+                        <i class="${hizmet.ikon}"></i>
+                    </div>
+                    <h3 class="hizmet-baslik">${hizmet.baslik}</h3>
+                    <p class="hizmet-aciklama">${hizmet.aciklama}</p>
+                    <ul class="hizmet-ozellikler">
+                        ${hizmet.ozellikler.map(ozellik => `<li>${ozellik}</li>`).join('')}
+                    </ul>
+                    <div class="hizmet-fiyat">${hizmet.fiyat}</div>
+                    <button class="hizmet-buton" onclick="hizmetSec('${hizmet.baslik}')">
+                        <i class="fas fa-arrow-right"></i> Seç
+                    </button>
+                </div>
+            `).join('');
+
+            // Bölümü görünür yap
+            setTimeout(() => {
+                bolum.classList.add('yuklendi');
+            }, 100);
+        }
+
+        // Hakkında Yükle
+        function hakkindaYukle() {
+            const bolumlerContainer = document.getElementById('hakkindaBolumler');
+            const istatistikContainer = document.getElementById('istatistikGrid');
+            const bolum = document.getElementById('hakkindaBolumu');
+
+            // Bölümleri yükle
+            bolumlerContainer.innerHTML = hakkindaVerisi.bolumler.map((bolum, index) => `
+                <div class="hakkinda-bolum fade-in" style="animation-delay: ${index * 0.1}s;">
+                    <h3>${bolum.baslik}</h3>
+                    <p>${bolum.icerik}</p>
+                </div>
+            `).join('');
+
+            // İstatistikleri yükle
+            istatistikContainer.innerHTML = hakkindaVerisi.istatistikler.map((istatistik, index) => `
+                <div class="istatistik-kart fade-in" style="animation-delay: ${index * 0.1 + 0.5}s;">
+                    <span class="istatistik-sayi">${istatistik.sayi}</span>
+                    <span class="istatistik-etiket">${istatistik.etiket}</span>
+                </div>
+            `).join('');
+
+            // Bölümü görünür yap
+            setTimeout(() => {
+                bolum.classList.add('yuklendi');
+            }, 100);
+        }
+
+        // Footer Yükle
+        function footerYukle() {
+            const container = document.getElementById('footerIcerik');
+            
+            container.innerHTML = `
+                <div class="footer-bolum">
+                    <h4>${footerVerisi.sirket.baslik}</h4>
+                    <p>${footerVerisi.sirket.aciklama}</p>
+                    <div class="sosyal-linkler">
+                        ${footerVerisi.sirket.sosyal.map(sosyal => `
+                            <button class="sosyal-buton" onclick="sosyalHandle('${sosyal.isim}')">
+                                <i class="${sosyal.ikon}"></i>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="footer-bolum">
+                    <h4>${footerVerisi.hizmetler.baslik}</h4>
+                    ${footerVerisi.hizmetler.linkler.map(link => `
+                        <a href="#" onclick="hizmetlereGit()">${link}</a>
+                    `).join('')}
+                </div>
+                <div class="footer-bolum">
+                    <h4>${footerVerisi.sirket_bilgi.baslik}</h4>
+                    ${footerVerisi.sirket_bilgi.linkler.map(link => `
+                        <a href="#" onclick="hakkindayaGit()">${link}</a>
+                    `).join('')}
+                </div>
+                <div class="footer-bolum">
+                    <h4>${footerVerisi.yasal.baslik}</h4>
+                    ${footerVerisi.yasal.linkler.map(link => `
+                        <a href="#" onclick="yasalModal('${link}')">${link}</a>
+                    `).join('')}
+                </div>
+            `;
+
+            footerYuklendi = true;
+        }
+
+        // Event Handler'lar
+        function hizmetSec(hizmetAdi) {
+            retroUyari(
+                `Mükemmel seçim! "${hizmetAdi}" hizmeti için size özel teklif hazırlayalım. 
+                Proje detaylarınızı info@retrowave.digital adresine gönderin veya +90 555 123 4567'yi arayın.`, 
+                'basari'
+            );
+        }
+
+        function iletisimTiklandi() {
+            retroUyari(
+                `Harika! Size özel teklif hazırlayalım. 
+                📧 E-posta: info@retrowave.digital 
+                📞 Telefon: +90 555 RETRO (73876)
+                
+                Proje detaylarınızı paylaşın, 24 saat içinde geri dönüş yapacağız!`, 
+                'basari'
+            );
+        }
+
+        function sosyalHandle(platform) {
+            retroUyari(
+                `${platform} sayfamızı takip edin! @RetroWaveDigital hesabından bizi bulabilirsiniz.`, 
+                'bilgi'
+            );
+        }
+
+        function yasalModal(tip) {
+            retroUyari(
+                `${tip} sayfası yakında yayınlanacak. Daha fazla bilgi için iletişime geçin.`, 
+                'bilgi'
+            );
+        }
+
+        // Retro Uyarı Sistemi
+        function retroUyari(mesaj, tip = 'bilgi') {
+            const renkler = {
+                'basari': 'linear-gradient(45deg, var(--neon-yesil), var(--neon-mavi))',
+                'bilgi': 'linear-gradient(45deg, var(--neon-pembe), var(--neon-mor))',
+                'uyari': 'linear-gradient(45deg, var(--neon-sari), #ff8000)'
+            };
+
+            const ikonlar = {
+                'basari': 'fas fa-check-circle',
+                'bilgi': 'fas fa-info-circle',
+                'uyari': 'fas fa-exclamation-triangle'
+            };
+
+            const uyari = document.createElement('div');
+            uyari.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: ${renkler[tip]};
+                color: white;
+                padding: 50px;
+                border-radius: 25px;
+                font-family: 'Orbitron', monospace;
+                font-weight: 600;
+                text-align: center;
+                z-index: 10000;
+                box-shadow: 0 0 80px rgba(255, 0, 255, 0.8);
+                backdrop-filter: blur(20px);
+                border: 3px solid rgba(255, 255, 255, 0.3);
+                max-width: 600px;
+                animation: uyariGiris 0.6s ease-out;
+            `;
+            
+            uyari.innerHTML = `
+                <div style="margin-bottom: 30px;">
+                    <i class="${ikonlar[tip]}" style="font-size: 2.5rem; margin-bottom: 20px; display: block;"></i>
+                    <div style="font-size: 1.1rem; line-height: 1.6; white-space: pre-line;">${mesaj}</div>
+                </div>
+                <button onclick="this.parentElement.remove()" 
+                        style="
+                            background: rgba(255, 255, 255, 0.2);
+                            border: 1px solid rgba(255, 255, 255, 0.5);
+                            color: white;
+                            padding: 15px 35px;
+                            border-radius: 30px;
+                            cursor: pointer;
+                            font-family: 'Orbitron', monospace;
+                            font-weight: bold;
+                            transition: all 0.3s ease;
+                            font-size: 1rem;
+                        "
+                        onmouseover="this.style.background='rgba(255, 255, 255, 0.3)'"
+                        onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'">
+                    <i class="fas fa-times"></i> KAPAT
+                </button>
+            `;
+
+            // Animasyon stilleri ekle
+            if (!document.querySelector('#uyariStilleri')) {
+                const style = document.createElement('style');
+                style.id = 'uyariStilleri';
+                style.textContent = `
+                    @keyframes uyariGiris {
+                        from {
+                            opacity: 0;
+                            transform: translate(-50%, -50%) scale(0.7);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translate(-50%, -50%) scale(1);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            document.body.appendChild(uyari);
+
+            // Otomatik kaldır
+            setTimeout(() => {
+                if (uyari.parentElement) {
+                    uyari.style.opacity = '0';
+                    uyari.style.transform = 'translate(-50%, -50%) scale(0.7)';
+                    setTimeout(() => uyari.remove(), 400);
+                }
+            }, 10000);
+        }
+
+        // Event Listener'ları Kur
+        function eventKur() {
+            // Klavye kısayolları
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    // Açık modal/uyarıları kapat
+                    document.querySelectorAll('[style*="position: fixed"]').forEach(el => {
+                        if (!el.id || el.id !== 'yuklemeEkrani') {
+                            el.remove();
+                        }
+                    });
+                }
+                
+                // Navigasyon kısayolları
+                if (yukleniyor) return;
+                
+                switch(e.key) {
+                    case '1':
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        break;
+                    case '2':
+                        hizmetlereGit();
+                        break;
+                    case '3':
+                        hakkindayaGit();
+                        break;
+                    case '4':
+                        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                        break;
+                }
+            });
+
+            // Scroll ile dinamik yükleme
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    const scrollPos = window.scrollY;
+                    const windowHeight = window.innerHeight;
+                    
+                    // Hizmetler bölümü görünürlük kontrolü
+                    const hizmetlerBolumu = document.getElementById('hizmetlerBolumu');
+                    const hizmetlerTop = hizmetlerBolumu.offsetTop;
+                    
+                    if (scrollPos + windowHeight > hizmetlerTop + 200 && !hizmetlerYuklendi) {
+                        hizmetlerYukle();
+                        hizmetlerYuklendi = true;
+                    }
+                    
+                    // Hakkında bölümü görünürlük kontrolü
+                    const hakkindaBolumu = document.getElementById('hakkindaBolumu');
+                    const hakkindaTop = hakkindaBolumu.offsetTop;
+                    
+                    if (scrollPos + windowHeight > hakkindaTop + 200 && !hakkindaYuklendi) {
+                        hakkindaYukle();
+                        hakkindaYuklendi = true;
+                    }
+                }, 100);
+            });
+
+            // Ana sayfa linkine tıklama
+            document.querySelector('a[href="index.html"]').addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // İletişim linkine tıklama
+            document.querySelector('a[href="#contact"]').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Performans izleme
+        window.addEventListener('load', () => {
+            if (window.performance) {
+                const perfVerisi = window.performance.timing;
+                const yuklemeZamani = perfVerisi.loadEventEnd - perfVerisi.navigationStart;
+                console.log(`🚀 Site yükleme süresi: ${yuklemeZamani}ms`);
+                
+                // Google Analytics için
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'timing_complete', {
+                        'name': 'load',
+                        'value': yuklemeZamani
+                    });
+                }
+            }
+        });
+
+        // Intersection Observer ile lazy loading
+        function lazyLoadSetup() {
+            const lazyElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '50px'
+            });
+
+            lazyElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.8s ease-out';
+                observer.observe(el);
+            });
+        }
+
+        // Responsive görüntü optimizasyonu
+        function responsiveOptimization() {
+            // Mobil cihazlarda video kalitesini düşür
+            if (window.innerWidth < 768) {
+                const video = document.getElementById('heroVideo');
+                if (video) {
+                    video.style.filter = 'brightness(0.3) contrast(1.2) saturate(1.5)';
+                }
+            }
+        }
+
+        // Site başlatma - DOM hazır olduğunda
+        document.addEventListener('DOMContentLoaded', () => {
+            siteBaslat();
+            lazyLoadSetup();
+            responsiveOptimization();
+        });
+        
+        // Sayfa zaten yüklüyse hemen başlat
+        if (document.readyState !== 'loading') {
+            siteBaslat();
+            lazyLoadSetup();
+            responsiveOptimization();
+        }
+
+        // Service Worker (PWA için opsiyonel)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+</body>
+</html><!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>RETRO WAVE - Web Tasarım ve Dijital Pazarlama Ajansı | İstanbul</title>
+    <meta name="description" content="İstanbul'un en iyi web tasarım ve dijital pazarlama ajansı. Retro wave temalı modern web siteleri, e-ticaret, mobil uygulama ve SEO hizmetleri. Ücretsiz teklif alın!">
+    <meta name="keywords" content="web tasarım, dijital pazarlama, SEO, e-ticaret, mobil uygulama, web sitesi, İstanbul, retro wave, synthwave, kurumsal kimlik">
+    <meta name="author" content="Retro Wave Digital Agency">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="RETRO WAVE - Web Tasarım ve Dijital Pazarlama Ajansı">
+    <meta property="og:description" content="Retro wave temalı modern web siteleri ve dijital pazarlama çözümleri. İstanbul'da profesyonel web tasarım hizmetleri.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.retrowave.digital">
+    <meta property="og:image" content="https://www.retrowave.digital/images/og-image.jpg">
+    <meta property="og:locale" content="tr_TR">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RETRO WAVE - Web Tasarım Ajansı">
+    <meta name="twitter:description" content="Retro wave temalı modern web siteleri ve dijital pazarlama çözümleri.">
+    <meta name="twitter:image" content="https://www.retrowave.digital/images/twitter-card.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.retrowave.digital">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Retro Wave Digital Agency",
+        "url": "https://www.retrowave.digital",
+        "logo": "https://www.retrowave.digital/logo.png",
+        "description": "İstanbul'un önde gelen web tasarım ve dijital pazarlama ajansı",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "İstanbul",
+            "addressCountry": "TR"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+90-555-123-4567",
+            "contactType": "Müşteri Hizmetleri",
+            "availableLanguage": "Turkish"
+        },
+        "sameAs": [
+            "https://www.instagram.com/retrowavedigital",
+            "https://www.twitter.com/retrowavedigital",
+            "https://www.youtube.com/retrowavedigital",
+            "https://www.linkedin.com/company/retrowavedigital"
+        ],
+        "services": [
+            "Web Tasarım",
+            "E-Ticaret",
+            "Mobil Uygulama",
+            "SEO",
+            "Dijital Pazarlama",
+            "Sosyal Medya Yönetimi"
+        ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --neon-pembe: #ff0080;
+            --neon-mavi: #00ffff;
+            --neon-sari: #ffff00;
+            --neon-mor: #8000ff;
+            --neon-yesil: #00ff88;
+            --koyu-arkaplan: #0a0a0f;
+            --kart-arkaplan: rgba(0, 0, 0, 0.7);
+            --cam-arkaplan: rgba(255, 255, 255, 0.05);
+            --kenar-isik: rgba(0, 255, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--koyu-arkaplan) 0%, #1a0033 50%, #000a1a 100%);
+            color: var(--neon-mavi);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        /* Yükleme Ekranı */
+        .yukleme-ekrani {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--koyu-arkaplan);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: all 0.6s ease-out;
+        }
+
+        .yukleme-ekrani.gizle {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .yukleme-text {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            color: var(--neon-mavi);
+            margin-bottom: 30px;
+            animation: nabiz 1.5s infinite;
+        }
+
+        .yukleme-cubuk {
+            width: 400px;
+            height: 6px;
+            background: rgba(0, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid var(--kenar-isik);
+        }
+
+        .yukleme-ilerleme {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-pembe), var(--neon-mavi), var(--neon-sari));
+            width: 0%;
+            animation: yukleIlerleme 1s ease-out forwards;
+        }
+
+        @keyframes nabiz {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes yukleIlerleme {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Navigasyon */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .nav-menu {
+            background: var(--cam-arkaplan);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--kenar-isik);
+            border-radius: 30px;
+            padding: 15px 25px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--neon-mavi);
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            padding: 12px 25px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 25px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover, .nav-btn.aktif {
+            background: linear-gradient(45deg, var(--neon-pembe), var(--neon-mavi));
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        .iletisim-btn {
+            background: linear-gradient(45deg, var(--neon-sari), #ff8000) !important;
+            color: var(--koyu-arkaplan) !important;
+        }
+
+        /* Hero Video Bölümü - TAM EKRAN */
+        .hero-bolum {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            filter: brightness(0.4) contrast(1.4) saturate(1.8);
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 0, 128, 0.4) 0%, 
+                transparent 30%, 
+                transparent 70%,
+                rgba(128, 0, 255, 0.4) 100%);
+            z-index: 2;
+        }
+
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120%;
+            height: 120%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: gridHareket 30s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes gridHareket {
+            0% { transform: translate(-10%, -10%); }
+            100% { transform: translate(10%, 10%); }
+        }
+
+        .hero-icerik {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .hero-baslik {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--neon-pembe), var(--neon-mavi), var(--neon-sari));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            animation: baslikPariltisi 4s ease-in-out infinite alternate;
+            line-height: 1.1;
+        }
+
+        @keyframes baslikPariltisi {
+            0% { filter: hue-rotate(0deg) drop-shadow(0 0 40px var(--neon-pembe)); }
+            50% { filter: hue-rotate(180deg) drop-shadow(0 0 50px var(--neon-mavi)); }
+            100% { filter: hue-rotate(360deg) drop-shadow(0 0 60px var(--neon-sari)); }
+        }
+
+        .hero-altbaslik {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--neon-yesil);
+            margin-bottom: 40px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: yukariKaydir 1.2s ease-out 0.5s forwards;
+        }
+
+        .hero-buton {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(45deg, var(--neon-pembe), var(--neon-mor));
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border: none;
+            cursor: pointer;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: yukariKaydir 1.2s ease-out 1s forwards;
+            font-size: 1.1rem;
+        }
+
+        .hero-buton:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 0, 128, 0.6);
+        }
+
+        @keyframes yukariKaydir {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Marka Bölümü - SABİT */
+        .marka-bolum {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--koyu-arkaplan) 0%, #1a0033 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+
+        .marka-arkaplan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 0, 128, 0.1) 0%, transparent 60%),
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 60%);
+            animation: desenUzme 25s ease-in-out infinite;
+        }
+
+        @keyframes desenUzme {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+        }
+
+        .marka-icerik {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            padding: 0 20px;
+        }
+
+        .marka-logo {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(6rem, 18vw, 18rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, 
+                var(--neon-pembe) 0%, 
+                var(--neon-mavi) 20%, 
+                var(--neon-sari) 40%, 
+                var(--neon-mor) 60%, 
+                var(--neon-yesil) 80%,
+                var(--neon-pembe) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 500% 500%;
+            animation: logoKaydir 8s ease infinite, logoUzme 5s ease-in-out infinite;
+            margin-bottom: 50px;
+            line-height: 0.9;
+        }
+
+        @keyframes logoKaydir {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes logoUzme {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-40px) scale(1.02); }
+        }
+
+        .marka-slogan {
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: var(--neon-mavi);
+            margin-bottom: 40px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .marka-aciklama {
+            font-size: 1.5rem;
+            color: #ccc;
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            line-height: 1.9;
+        }
+
+        .marka-ozellikler {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .marka-ozellik {
+            background: var(--cam-arkaplan);
+            border: 1px solid var(--kenar-isik);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marka-ozellik::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.8s;
+        }
+
+        .marka-ozellik:hover::before {
+            left: 100%;
+        }
+
+        .marka-ozellik:hover {
+            transform: translateY(-15px);
+            border-color: var(--neon-pembe);
+            box-shadow: 0 25px 50px rgba(255, 0, 128, 0.4);
+        }
+
+        .marka-ozellik i {
+            font-size: 3.5rem;
+            color: var(--neon-mavi);
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+        }
+
+        .marka-ozellik:hover i {
+            color: var(--neon-pembe);
+            transform: scale(1.3) rotate(15deg);
+        }
+
+        .marka-ozellik h3 {
+            font-size: 1.6rem;
+            color: var(--neon-mavi);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .marka-ozellik p {
+            color: #ddd;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* Dinamik İçerik Bölümleri */
+        .dinamik-icerik {
+            background: var(--koyu-arkaplan);
+            padding: 100px 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .dinamik-icerik.yuklendi {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bolum-baslik {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .bolum-ana-baslik {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            background: linear-gradient(45deg, var(--neon-pembe), var(--neon-mavi));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+        }
+
+        .bolum-alt-baslik {
+            font-size: 1.4rem;
+            color: var(--neon-yesil);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Hizmetler Grid */
+        .hizmetler-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hizmet-kart {
+            background: var(--kart-arkaplan);
+            border: 1px solid var(--kenar-isik);
+            border-radius: 25px;
+            padding: 45px;
+            text-align: center;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hizmet-kart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.8s;
+        }
+
+        .hizmet-kart:hover::before {
+            left: 100%;
+        }
+
+        .hizmet-kart:hover {
+            transform: translateY(-20px);
+            border-color: var(--neon-pembe);
+            box-shadow: 0 30px 60px rgba(255, 0, 128, 0.4);
+        }
+
+        .hizmet-ikon {
+            font-size: 4.5rem;
+            color: var(--neon-mavi);
+            margin-bottom: 30px;
+            transition: all 0.5s ease;
+        }
+
+        .hizmet-kart:hover .hizmet-ikon {
+            color: var(--neon-pembe);
+            transform: scale(1.3) rotate(20deg);
+        }
+
+        .hizmet-baslik {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon-mavi);
+            margin-bottom: 20px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .hizmet-aciklama {
+            color: #eee;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .hizmet-ozellikler {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .hizmet-ozellikler li {
+            color: #ccc;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .hizmet-ozellikler li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: var(--neon-yesil);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-yesil);
+        }
+
+        .hizmet-fiyat {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--neon-sari);
+            margin-bottom: 30px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .hizmet-buton {
+            background: linear-gradient(45deg, var(--neon-mor), var(--neon-pembe));
+            border: none;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 35px;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .hizmet-buton:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.6);
+        }
+
+        /* Hakkında Bölümü */
+        .hakkinda-icerik {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hakkinda-giris {
+            text-align: center;
+            margin-bottom: 80px;
+            font-size: 1.5rem;
+            line-height: 1.9;
+            color: #eee;
+        }
+
+        .hakkinda-bolumler {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .hakkinda-bolum {
+            background: var(--cam-arkaplan);
+            border: 1px solid var(--kenar-isik);
+            border-radius: 25px;
+            padding: 50px;
+            backdrop-filter: blur(15px);
+        }
+
+        .hakkinda-bolum h3 {
+            font-size: 2.2rem;
+            color: var(--neon-mavi);
+            margin-bottom: 25px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .hakkinda-bolum p {
+            color: #ddd;
+            line-height: 1.8;
+            font-size: 1.2rem;
+        }
+
+        .istatistik-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .istatistik-kart {
+            background: var(--kart-arkaplan);
+            border: 1px solid var(--kenar-isik);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s ease;
+        }
+
+        .istatistik-kart:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-pembe);
+        }
+
+        .istatistik-sayi {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--neon-pembe);
+            display: block;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .istatistik-etiket {
+            color: var(--neon-mavi);
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--koyu-arkaplan), #1a0033);
+            padding: 100px 20px 50px;
+            border-top: 1px solid var(--kenar-isik);
+            margin-top: 50px;
+        }
+
+        .footer-icerik {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-bolum h4 {
+            color: var(--neon-mavi);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .footer-bolum p, .footer-bolum a {
+            color: #aaa;
+            line-height: 1.9;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            margin-bottom: 12px;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .footer-bolum a:hover {
+            color: var(--neon-pembe);
+        }
+
+        .sosyal-linkler {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .sosyal-buton {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(45deg, var(--neon-pembe), var(--neon-mavi));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sosyal-buton:hover {
+            transform: rotate(360deg) scale(1.3);
+            box-shadow: 0 0 30px var(--neon-pembe);
+        }
+
+        .footer-alt {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #777;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                bottom: 30px;
+                top: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                right: auto;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 12px 20px;
+                gap: 15px;
+            }
+
+            .nav-btn {
+                padding: 10px 18px;
+                font-size: 0.8rem;
+            }
+
+            .hizmetler-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hakkinda-bolumler {
+                grid-template-columns: 1fr;
+            }
+            .hakkinda-bolumler {
+                grid-template-columns: 1fr;
+            }
+
+            .marka-ozellikler {
+                grid-template-columns: 1fr;
+            }
+
+            .yukleme-cubuk {
+                width: 300px;
+            }
+        }
+
+        /* Animasyonlar */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
