@@ -1,0 +1,14 @@
+{
+  "name": "furkatech-firestore-setup",
+  "version": "1.0.0", 
+  "description": "Firebase Firestore setup for FurkaTech ERP",
+  "main": "firebase-setup.js",
+  "scripts": {
+    "setup": "node firebase-setup.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  },
+  "author": "FurkaTech",
+  "license": "MIT"
+}

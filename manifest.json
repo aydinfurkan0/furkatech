@@ -1,0 +1,31 @@
+{
+  "name": "FurkaTech İş Yönetimi Sistemi",
+  "short_name": "Furkatech Technology",
+  "description": "Furkatech Technology",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00fefb",
+  "icons": [
+    {
+      "src": "/img/logo/furkatech75.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/img/logo/furkatech75.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/img/logo/furkatech75.svg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/logo/500x200.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+   
+    <title>Furkatech Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="img/logo/furkatech75.svg">
+    <link rel="manifest" href="/manifest.json">
+    
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <div class="login-logo">
+                <img src="img/logo/furkatech300.svg" alt="Furkatech technology Logo">
+                
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="loginEmail" placeholder="Kullanıcı Adı" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Şifre" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                </button>
+            </form>
+            
+        </div>
+    </div>
+
+    <!-- Register Screen -->
+    <div id="registerScreen" class="login-container" style="display: none;">
+        <div class="login-box">
+            <div class="login-logo">
+                <img src="img/logo/furkatech300.svg" alt="FurkaTech Logo">
+                <h1>FurkaTech</h1>
+                <p>Yeni Hesap Oluştur</p>
+            </div>
+            <form id="registerForm" class="login-form">
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="registerName" placeholder="Ad Soyad" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="registerEmail" placeholder="E-posta adresi" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="registerPassword" placeholder="Şifre (min 6 karakter)" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-user-plus"></i> Kayıt Ol
+                </button>
+            </form>
+            <div class="login-footer">
+                <p>Zaten hesabınız var mı? <a href="#" id="showLogin">Giriş Yap</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="img/logo/furkatech300.svg" alt="Furkatech Technology Logo" class="logo">
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="proposals">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Teklifler</span>
+                </a>
+                <a href="#" class="nav-item" data-section="payments">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Ödemeler</span>
+                </a>
+                <a href="#" class="nav-item" data-section="projects">
+                    <i class="fas fa-folder-open"></i>
+                    <span>Projeler</span>
+                </a>
+                <a href="#" class="nav-item" data-section="tasks">
+                    <i class="fas fa-tasks"></i>
+                    <span>Görevler</span>
+                </a>
+                <a href="#" class="nav-item" data-section="customers">
+                    <i class="fas fa-users"></i>
+                    <span>Müşteriler</span>
+                </a>
+                <a href="#" class="nav-item" data-section="invoices">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Faturalar</span>
+                </a>
+                <a href="#" class="nav-item" data-section="reports">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Raporlar</span>
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Ayarlar</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Çıkış Yap</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Ara...">
+                    </div>
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <div class="user-profile">
+    <div class="user-avatar"><i class="fas fa-user"></i></div>
+    <span id="userDisplayName">Admin</span>
+    <i class="fas fa-chevron-down"></i>
+</div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Toplam Gelir</h3>
+                            <p class="stat-value">₺125,450</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 12.5%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Aktif Projeler</h3>
+                            <p class="stat-value">24</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 3 yeni
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Müşteriler</h3>
+                            <p class="stat-value">156</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 8 yeni
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Tamamlanma</h3>
+                            <p class="stat-value">89%</p>
+                            <span class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i> 2%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-table-container">
+                    <div class="table-header">
+                        <h2>Son İşlemler</h2>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Yeni Ekle
+                        </button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Müşteri</th>
+                                <th>Proje</th>
+                                <th>Tutar</th>
+                                <th>Durum</th>
+                                <th>Tarih</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#001</td>
+                                <td>ABC Teknoloji</td>
+                                <td>Web Sitesi</td>
+                                <td>₺15,000</td>
+                                <td><span class="status active">Aktif</span></td>
+                                <td>24.09.2025</td>
+                                <td>
+                                    <button class="btn-action"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-action"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <section id="proposals" class="content-section">
+    <div class="section-header">
+        <h2>Teklifler</h2>
+        <button class="btn btn-primary" onclick="openModal('proposalModal')">
+            <i class="fas fa-plus"></i> Yeni Teklif
+        </button>
+    </div>
+    
+    <div class="data-table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Teklif No</th>
+                    <th>Müşteri</th>
+                    <th>Tutar</th>
+                    <th>Tarih</th>
+                    <th>Geçerlilik</th>
+                    <th>Durum</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody id="proposalsTable"></tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Teklif Modal -->
+<div id="proposalModal" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+        <div class="modal-header">
+            <h2>Yeni Teklif Hazırla</h2>
+            <button class="close-modal" onclick="closeModal('proposalModal')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <form id="proposalForm" class="modal-form">
+            <div class="form-row">
+                <div class="form-group">
+    <label>Müşteri *</label>
+    <div style="display: flex; gap: 10px; align-items: center;">
+        <input type="text" 
+               id="proposalClientName" 
+               name="clientName"
+               placeholder="Müşteri seçin..." 
+               readonly 
+               required
+               style="flex: 1; background: #f5f7fa; cursor: pointer;"
+               onclick="openClientSelectionModal()">
+        <button type="button" 
+                class="btn btn-primary" 
+                onclick="openClientSelectionModal()"
+                style="white-space: nowrap;">
+            <i class="fas fa-users"></i> Seç
+        </button>
+    </div>
+    <!-- Gizli alanlar (seçilen müşteri bilgileri) -->
+    <input type="hidden" id="proposalClientId" name="clientId">
+    <input type="hidden" id="proposalClientEmail" name="clientEmail">
+    <input type="hidden" id="proposalClientPhone" name="clientPhone">
+</div>
+                <div class="form-group">
+                    <label>Geçerlilik Süresi *</label>
+                    <input type="date" name="validUntil" required>
+                </div>
+            </div>
+            
+            <div style="background: var(--gray-light); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h4 style="margin-bottom: 15px;">Hizmet Kalemleri</h4>
+                <div id="proposalItems">
+                    <div class="proposal-item" style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 10px; margin-bottom: 10px; align-items: end;">
+                        <div class="form-group" style="margin: 0;">
+                            <label>Hizmet Açıklaması</label>
+                            <input type="text" name="itemDescription[]" placeholder="Web Tasarım" required>
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <label>Adet</label>
+                            <input type="number" name="itemQuantity[]" value="1" min="1" required onchange="calculateProposalTotal()">
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <label>Birim Fiyat</label>
+                            <input type="number" name="itemPrice[]" placeholder="0.00" step="0.01" required onchange="calculateProposalTotal()">
+                        </div>
+                        <button type="button" class="btn-action" onclick="removeProposalItem(this)" style="background: #ef4444; height: 40px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="addProposalItem()">
+                    <i class="fas fa-plus"></i> Satır Ekle
+                </button>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, rgba(0,254,251,0.1), rgba(0,254,251,0.05)); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; text-align: center;">
+                    <div>
+                        <strong>Ara Toplam</strong>
+                        <p id="proposalSubtotal" style="font-size: 20px; color: var(--primary-color); margin: 5px 0;">₺0.00</p>
+                    </div>
+                    <div>
+                        <strong>KDV (%20)</strong>
+                        <p id="proposalTax" style="font-size: 20px; color: var(--primary-color); margin: 5px 0;">₺0.00</p>
+                    </div>
+                    <div>
+                        <strong>Genel Toplam</strong>
+                        <p id="proposalTotal" style="font-size: 24px; color: var(--accent-color); margin: 5px 0; font-weight: bold;">₺0.00</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Ödeme Koşulları</label>
+                <textarea name="paymentTerms" rows="2" placeholder="Örn: %50 peşin, %50 teslimat"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Notlar / Açıklamalar</label>
+                <textarea name="notes" rows="3" placeholder="Teklif ile ilgili ek bilgiler..."></textarea>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('proposalModal')">İptal</button>
+                <button type="submit" class="btn btn-primary">Teklif Oluştur</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+            <!-- Payments Section -->
+            <section id="payments" class="content-section">
+                <div class="section-header">
+                    <h2>Ödeme Yönetimi</h2>
+                    <button class="btn btn-primary" onclick="openModal('paymentModal')">
+                        <i class="fas fa-plus"></i> Yeni Ödeme
+                    </button>
+                </div>
+                
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select class="filter-select">
+                            <option>Tüm Ödemeler</option>
+                            <option>Bekleyen</option>
+                            <option>Tamamlanan</option>
+                            <option>İptal</option>
+                        </select>
+                        <input type="date" class="filter-date">
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-filter"></i> Filtrele
+                        </button>
+                    </div>
+                </div>
+
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Ödeme No</th>
+                                <th>Müşteri</th>
+                                <th>Tutar</th>
+                                <th>Vade Tarihi</th>
+                                <th>Durum</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentsTable">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="content-section">
+                <div class="section-header">
+                    <h2>Proje Yönetimi</h2>
+                    <button class="btn btn-primary" onclick="openModal('projectModal')">
+                        <i class="fas fa-plus"></i> Yeni Proje
+                    </button>
+                </div>
+                <div class="project-cards">
+                    <!-- Dynamic content -->
+                </div>
+            </section>
+
+           <!-- Tasks Section -->
+<!-- Tasks Section -->
+<section id="tasks" class="content-section">
+    <div class="section-header">
+        <h2>Görev Yönetimi</h2>
+        <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary" onclick="showCompletedTasksPage()">
+                <i class="fas fa-check-circle"></i> Tamamlananlar
+            </button>
+            <button class="btn btn-primary" onclick="openModal('taskModal')">
+                <i class="fas fa-plus"></i> Yeni Görev
+            </button>
+        </div>
+    </div>
+    <div class="kanban-board">
+        <div class="kanban-column">
+            <h3>Yapılacak</h3>
+        </div>
+        <div class="kanban-column">
+            <h3>Devam Eden</h3>
+        </div>
+        <div class="kanban-column">
+            <h3>Test Bekleyen</h3>
+        </div>
+    </div>
+</section>
+
+            <!-- Customers Section -->
+            <section id="customers" class="content-section">
+                <div class="section-header">
+                    <h2>Müşteri Yönetimi</h2>
+                    <button class="btn btn-primary" onclick="openModal('customerModal')">
+                        <i class="fas fa-plus"></i> Yeni Müşteri
+                    </button>
+                </div>
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ad Soyad</th>
+                                <th>Şirket</th>
+                                <th>Email</th>
+                                <th>Telefon</th>
+                                <th>Durum</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customersTable">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Invoices Section -->
+            <section id="invoices" class="content-section">
+                <div class="section-header">
+                    <h2>Fatura Yönetimi</h2>
+                    <button class="btn btn-primary" onclick="openModal('invoiceModal')">
+                        <i class="fas fa-plus"></i> Yeni Fatura
+                    </button>
+                </div>
+                <div class="invoice-stats">
+                    <div class="invoice-stat">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <div>
+                            <h4>₺0</h4>
+                            <p>Bu Ay Faturalanan</p>
+                        </div>
+                    </div>
+                    <div class="invoice-stat">
+                        <i class="fas fa-check-double"></i>
+                        <div>
+                            <h4>₺0</h4>
+                            <p>Tahsil Edilen</p>
+                        </div>
+                    </div>
+                    <div class="invoice-stat">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>₺0</h4>
+                            <p>Bekleyen</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Fatura No</th>
+                                <th>Müşteri</th>
+                                <th>Tutar</th>
+                                <th>Tarih</th>
+                                <th>Vade</th>
+                                <th>Durum</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoicesTable">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="content-section">
+                <div class="section-header">
+                    <h2>Raporlar</h2>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-download"></i> Rapor İndir
+                    </button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="report-cards">
+                    <div class="report-card">
+                        <h3>Gelir Analizi</h3>
+                        <p class="report-value">₺0</p>
+                        <p class="report-change">Hesaplanıyor...</p>
+                    </div>
+                    <div class="report-card">
+                        <h3>Proje Verimliliği</h3>
+                        <p class="report-value">0%</p>
+                        <p class="report-change">Hesaplanıyor...</p>
+                    </div>
+                    <div class="report-card">
+                        <h3>Müşteri Memnuniyeti</h3>
+                        <p class="report-value">0/5</p>
+                        <p class="report-change">Veri yok</p>
+                    </div>
+                </div>
+            </section>
+
+           <!-- Settings Section -->
+<section id="settings" class="content-section">
+    <div class="section-header">
+        <h2>Ayarlar</h2>
+    </div>
+    <div class="settings-container">
+        <div class="settings-group">
+            <h3>Şirket Bilgileri</h3>
+            <form class="settings-form">
+                <div class="form-group">
+                    <label>Şirket Adı</label>
+                    <input type="text" name="companyName" placeholder="Şirket adı">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="info@sirket.com">
+                </div>
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="tel" name="phone" placeholder="0212 123 45 67">
+                </div>
+                <div class="form-group">
+                    <label>Adres</label>
+                    <textarea name="address" placeholder="Şirket adresi"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Kaydet
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Yeni Ödeme Ekle</h2>
+                <button class="close-modal" onclick="closeModal('paymentModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="paymentForm" class="modal-form">
+                <div class="form-group">
+                    <label>Müşteri</label>
+                    <input type="text" name="customer" placeholder="Müşteri adı" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tutar</label>
+                        <input type="number" name="amount" placeholder="0.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Vade Tarihi</label>
+                        <input type="date" name="dueDate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <textarea name="description" placeholder="Ödeme açıklaması"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('paymentModal')">İptal</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Yeni Proje Ekle</h2>
+                <button class="close-modal" onclick="closeModal('projectModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="projectForm" class="modal-form">
+                <div class="form-group">
+                    <label>Proje Adı</label>
+                    <input type="text" name="name" placeholder="Proje adı" required>
+                </div>
+                <div class="form-group">
+                    <label>Müşteri</label>
+                    <input type="text" name="client" placeholder="Müşteri adı" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Başlangıç</label>
+                        <input type="date" name="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Bitiş</label>
+                        <input type="date" name="endDate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Bütçe</label>
+                    <input type="number" name="budget" placeholder="0.00" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('projectModal')">İptal</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Yeni Görev Ekle</h2>
+                <button class="close-modal" onclick="closeModal('taskModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="taskForm" class="modal-form">
+                <div class="form-group">
+                    <label>Görev Başlığı</label>
+                    <input type="text" name="title" placeholder="Görev başlığı" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Atanan</label>
+                        <input type="text" name="assignee" placeholder="Kişi adı" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Öncelik</label>
+                        <select name="priority" required>
+                            <option value="low">Düşük</option>
+                            <option value="medium">Orta</option>
+                            <option value="high">Yüksek</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <textarea name="description" placeholder="Görev açıklaması"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('taskModal')">İptal</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+   <div id="customerModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Yeni Müşteri Ekle</h2>
+            <button class="close-modal" onclick="closeModal('customerModal')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <form id="customerForm" class="modal-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Ad Soyad</label>
+                    <input type="text" name="name" placeholder="Ad Soyad" required>
+                </div>
+                <div class="form-group">
+                    <label>Şirket</label>
+                    <input type="text" name="company" placeholder="Şirket adı" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="tel" name="phone" placeholder="05XX XXX XX XX" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Web Sitesi</label>
+                <input type="url" name="website" placeholder="https://www.example.com">
+            </div>
+            <div class="form-group">
+                <label>Adres</label>
+                <textarea name="address" placeholder="Müşteri adresi" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Notlar</label>
+                <textarea name="notes" placeholder="Müşteri hakkında notlar" rows="2"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('customerModal')">İptal</button>
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <div id="invoiceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Yeni Fatura Oluştur</h2>
+                <button class="close-modal" onclick="closeModal('invoiceModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="invoiceForm" class="modal-form">
+                <div class="form-group">
+                    <label>Müşteri</label>
+                    <input type="text" name="customer" placeholder="Müşteri adı" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tutar</label>
+                        <input type="number" name="amount" placeholder="0.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>KDV (%)</label>
+                        <select name="tax">
+                            <option value="20">20</option>
+                            <option value="10">10</option>
+                            <option value="1">1</option>
+                            <option value="0">0</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fatura Tarihi</label>
+                        <input type="date" name="invoiceDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Vade Tarihi</label>
+                        <input type="date" name="dueDate" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('invoiceModal')">İptal</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Müşteri Seçim Modalı -->
+<div id="clientSelectionModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-users"></i> Müşteri Seç</h2>
+            <button class="close-modal" onclick="closeClientSelectionModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <!-- Arama kutusu -->
+            <div class="form-group" style="margin-bottom: 20px;">
+                <input type="text" 
+                       id="clientSearchInput" 
+                       placeholder="Müşteri ara..." 
+                       onkeyup="filterClients()">
+            </div>
+            
+            <!-- Müşteri listesi -->
+            <div id="clientListForSelection">
+                <!-- JavaScript ile doldurulacak -->
+            </div>
+        </div>
+        <div class="modal-footer-center">
+            <button class="btn btn-primary" onclick="addNewClientFromSelection()">
+                <i class="fas fa-user-plus"></i> Yeni Müşteri Ekle
+            </button>
+            <button class="btn btn-secondary" onclick="closeClientSelectionModal()">
+                <i class="fas fa-times"></i> İptal
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">İşlem başarılı!</span>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
