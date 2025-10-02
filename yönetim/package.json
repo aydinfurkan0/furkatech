@@ -1,0 +1,14 @@
+{
+  "name": "furkatech-apartman-yonetimi",
+  "version": "1.0.0",
+  "description": "Apartman Yönetim Sistemi Firebase Setup",
+  "main": "firebase-setup.js",
+  "scripts": {
+    "setup": "node firebase-setup.js init",
+    "reset": "node firebase-setup.js reset",
+    "view": "node firebase-setup.js view"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  }
+}

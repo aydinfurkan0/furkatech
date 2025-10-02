@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furkatech Technology - Apartman Yönetim Sistemi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-wrapper">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-logo">
+                    <img src="img/logo/500x200.png" alt="">
+                </div>
+                
+                <p class="login-subtitle">Apartman Yönetim Sistemi</p>
+            </div>
+            <div class="login-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Kullanıcı Adı</label>
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" class="form-control" id="username" placeholder="Kullanıcı adınızı giriniz" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Şifre</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" class="form-control" id="password" placeholder="Şifrenizi giriniz" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Giriş Yap
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <img src="img/logo/500x200.png" alt="">
+                
+            </div>
+            <div class="navbar-right">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <div class="user-name" id="currentUserName">Kullanıcı</div>
+                        <div class="user-role" id="currentUserRole">Daire Sakini</div>
+                    </div>
+                </div>
+                <button class="btn-logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Çıkış
+                </button>
+            </div>
+        </nav>
+
+        <div class="main-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-menu">
+                    <div class="menu-section">
+                        <div class="menu-section-title">Ana Menü</div>
+                        <div class="menu-item active" onclick="showPage('home')">
+                            <i class="fas fa-home"></i>
+                            <span>Ana Sayfa</span>
+                        </div>
+                        <div class="menu-item" onclick="showPage('dues')">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Aidat Takibi</span>
+                        </div>
+                        <div class="menu-item" onclick="showPage('profile')">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Profil</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-section admin-only hidden">
+                        <div class="menu-section-title">Yönetim</div>
+                            <div class="menu-item" onclick="showPage('buildings')">
+                                <i class="fas fa-building"></i>
+                                <span>Apartmanlar</span>
+                            </div>
+                            <div class="menu-item" onclick="showPage('announcements')">
+                                <i class="fas fa-bullhorn"></i>
+                                <span>Duyurular</span>
+                            </div>
+                            <div class="menu-item" onclick="showPage('payments')">
+                                <i class="fas fa-receipt"></i>
+                                <span>Ödeme Yönetimi</span>
+                            </div>
+                        <div class="menu-item" onclick="showPage('admin')">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Admin Paneli</span>
+                        </div>
+                </div>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content-area">
+                <!-- Home Page -->
+                <div id="homePage" class="page-section active">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-home"></i>
+                            Ana Sayfa
+                        </h1>
+                        <p class="page-subtitle">Hoş geldiniz! İşte özet bilgileriniz.</p>
+                    </div>
+
+                    <div class="stats-grid" id="homeStats"></div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-bullhorn"></i>
+                                Duyurular
+                            </h3>
+                        </div>
+                        <div id="announcementsList"></div>
+                    </div>
+                </div>
+
+                <!-- Dues Page -->
+                <div id="duesPage" class="page-section">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-money-bill-wave"></i>
+                            Aidat Takibi
+                        </h1>
+                        <p class="page-subtitle" id="duesSubtitle">Aylık aidat ödemelerinizi takip edin</p>
+                    </div>
+
+                    <div class="card admin-only hidden">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-building"></i>
+                               Blok Seçin
+                            </h3>
+                        </div>
+                        <div class="apartments-grid" id="buildingSelectGrid"></div>
+                    </div>
+
+                    <div id="monthsGrid"></div>
+                </div>
+
+                <!-- Profile Page -->
+                <div id="profilePage" class="page-section">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-user-circle"></i>
+                            Profil Bilgileri
+                        </h1>
+                        <p class="page-subtitle">Profil bilgilerinizi görüntüleyin</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-id-card"></i>
+                                Kişisel Bilgiler
+                            </h3>
+                        </div>
+                        <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                            <div class="form-group">
+                                <label>Ad Soyad</label>
+                                <div class="input-group">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" class="form-control" id="profileName" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Daire No</label>
+                                <div class="input-group">
+                                    <i class="fas fa-door-open"></i>
+                                    <input type="text" class="form-control" id="profileApartment" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefon</label>
+                                <div class="input-group">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="text" class="form-control" id="profilePhone" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>IBAN</label>
+                                <div class="input-group">
+                                    <i class="fas fa-credit-card"></i>
+                                    <input type="text" class="form-control" id="profileIban" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Araç Plakası</label>
+                                <div class="input-group">
+                                    <i class="fas fa-car"></i>
+                                    <input type="text" class="form-control" id="profilePlate" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Otopark Yeri</label>
+                                <div class="input-group">
+                                    <i class="fas fa-parking"></i>
+                                    <input type="text" class="form-control" id="profileParking" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-exchange-alt"></i>
+                                Ev Devir İşlemi
+                            </h3>
+                        </div>
+                        <div class="form-group">
+                            <label>Yeni Malik/Kiracı Bilgisi</label>
+                            <textarea class="form-control" id="transferInfo" rows="3" placeholder="Ad Soyad, Telefon ve diğer bilgileri giriniz..." style="padding: 12px 15px;"></textarea>
+                        </div>
+                        <button class="btn-icon btn-success" onclick="requestTransfer()">
+                            <i class="fas fa-paper-plane"></i>
+                            Devir Talebinde Bulun
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Buildings Management (Admin) -->
+                <div id="buildingsPage" class="page-section">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-building"></i>
+                            Apartman Yönetimi
+                        </h1>
+                        <p class="page-subtitle">Apartmanları ve daireleri yönetin</p>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn-icon btn-success" onclick="openModal('addBuildingModal')">
+                            <i class="fas fa-plus"></i>
+                            Apartman Ekle
+                        </button>
+                    </div>
+
+                    <div class="apartments-grid" id="buildingsGrid"></div>
+                </div>
+
+                <!-- Announcements Management (Admin) -->
+                <div id="announcementsPage" class="page-section">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-bullhorn"></i>
+                            Duyuru Yönetimi
+                        </h1>
+                        <p class="page-subtitle">Duyuruları ekleyin, düzenleyin ve silin</p>
+                    </div>
+
+                    <button class="btn-icon btn-success" onclick="openModal('addAnnouncementModal')">
+                        <i class="fas fa-plus"></i>
+                        Yeni Duyuru Ekle
+                    </button>
+
+                    <div style="margin-top: 20px;" id="announcementsManageList"></div>
+                </div>
+
+                <!-- Payment Management (Admin) -->
+                <div id="paymentsPage" class="page-section">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-receipt"></i>
+                            Ödeme Yönetimi
+                        </h1>
+                        <p class="page-subtitle">Bekleyen dekontları onaylayın veya reddedin</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-clock"></i>
+                                Bekleyen Dekontlar
+                            </h3>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th><i class="fas fa-user"></i> Ad Soyad</th>
+                                        <th><i class="fas fa-building"></i> Apartman</th>
+                                        <th><i class="fas fa-door-open"></i> Daire</th>
+                                        <th><i class="fas fa-calendar"></i> Ay</th>
+                                        <th><i class="fas fa-money-bill"></i> Tutar</th>
+                                        <th><i class="fas fa-clock"></i> Tarih</th>
+                                        <th><i class="fas fa-cog"></i> İşlem</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pendingReceiptsTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="adminPage" class="page-section">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-user-shield"></i>
+            Admin Paneli
+        </h1>
+        <p class="page-subtitle">Kullanıcı ve veri yönetimi</p>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-users"></i>
+                Kullanıcı Yönetimi
+            </h3>
+            <button class="btn-icon btn-success" onclick="openModal('addUserModal')">
+                <i class="fas fa-user-plus"></i>
+                Kullanıcı Ekle
+            </button>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-user"></i> Ad Soyad</th>
+                        <th><i class="fas fa-building"></i> Apartman</th>
+                        <th><i class="fas fa-door-open"></i> Daire</th>
+                        <th><i class="fas fa-phone"></i> Telefon</th>
+                        <th><i class="fas fa-shield-alt"></i> Rol</th>
+                        <th><i class="fas fa-cog"></i> İşlem</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-database"></i>
+                Veri Yönetimi
+            </h3>
+        </div>
+        <div style="padding: 20px;">
+            <div style="margin-bottom: 30px;">
+                <h4 style="margin-bottom: 15px;"><i class="fas fa-download"></i> Dekont İndirme</h4>
+                <div class="form-group">
+                    <label>Apartman Seç</label>
+                    <select class="form-control" id="downloadBuilding" onchange="loadDownloadMonths()">
+                        <option value="">Apartman Seçin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ay Seç</label>
+                    <select class="form-control" id="downloadMonth">
+                        <option value="">Önce apartman seçin</option>
+                    </select>
+                </div>
+                <button class="btn-icon btn-success" onclick="downloadReceipts()">
+                    <i class="fas fa-download"></i>
+                    Dekontları İndir (.zip)
+                </button>
+            </div>
+
+            <div>
+                <h4 style="margin-bottom: 15px;"><i class="fas fa-trash"></i> Storage Temizleme</h4>
+                <div class="form-group">
+                    <label>Ay Seç</label>
+                    <select class="form-control" id="deleteMonth">
+                        <option value="">Ay Seçin</option>
+                    </select>
+                </div>
+                <button class="btn-icon btn-danger" onclick="deleteStorageByMonth()">
+                    <i class="fas fa-trash"></i>
+                    Seçilen Ayın Dekontlarını Sil
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- Users Management (Admin) -->
+                <div id="usersPage" class="page-section">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i class="fas fa-users"></i>
+                            Kullanıcı Yönetimi
+                        </h1>
+                        <p class="page-subtitle">Kullanıcıları görüntüleyin ve yönetin</p>
+                    </div>
+
+                    <button class="btn-icon btn-success" onclick="openModal('addUserModal')">
+                        <i class="fas fa-user-plus"></i>
+                        Kullanıcı Ekle
+                    </button>
+
+                    <div class="table-container" style="margin-top: 20px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    
+                                    <th><i class="fas fa-user"></i> Ad Soyad</th>
+                                    <th><i class="fas fa-building"></i> Apartman</th>
+                                    <th><i class="fas fa-door-open"></i> Daire</th>
+                                    <th><i class="fas fa-phone"></i> Telefon</th>
+                                    <th><i class="fas fa-shield-alt"></i> Rol</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Add Building Modal -->
+    <div id="addBuildingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-building"></i>
+                    Yeni Apartman Ekle
+                </h3>
+                <button class="modal-close" onclick="closeModal('addBuildingModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Apartman/Blok Adı</label>
+                    <div class="input-group">
+                        <i class="fas fa-building"></i>
+                        <input type="text" class="form-control" id="buildingName" placeholder="Örn: A Blok">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Daire Sayısı</label>
+                    <div class="input-group">
+                        <i class="fas fa-hashtag"></i>
+                        <input type="number" class="form-control" id="buildingFlats" placeholder="Örn: 24">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-icon btn-secondary" onclick="closeModal('addBuildingModal')">
+                    <i class="fas fa-times"></i>
+                    İptal
+                </button>
+                <button class="btn-icon btn-success" onclick="addBuilding()">
+                    <i class="fas fa-check"></i>
+                    Kaydet
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Apartment Modal -->
+    <div id="addApartmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-door-open"></i>
+                    Yeni Daire Ekle
+                </h3>
+                <button class="modal-close" onclick="closeModal('addApartmentModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="selectedBuildingId">
+                <div class="form-group">
+                    <label>Daire No</label>
+                    <div class="input-group">
+                        <i class="fas fa-door-open"></i>
+                        <input type="text" class="form-control" id="apartmentNo" placeholder="Örn: 101">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Malik/Kiracı Adı</label>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" class="form-control" id="apartmentOwner" placeholder="Ad Soyad">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <div class="input-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="text" class="form-control" id="apartmentPhone" placeholder="0532 123 45 67">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>IBAN</label>
+                    <div class="input-group">
+                        <i class="fas fa-credit-card"></i>
+                        <input type="text" class="form-control" id="apartmentIban" placeholder="TR00 0000 0000 0000 0000 0000 00">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Araç Plakası</label>
+                    <div class="input-group">
+                        <i class="fas fa-car"></i>
+                        <input type="text" class="form-control" id="apartmentPlate" placeholder="34 ABC 123">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Otopark Yeri</label>
+                    <div class="input-group">
+                        <i class="fas fa-parking"></i>
+                        <input type="text" class="form-control" id="apartmentParking" placeholder="A-12">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-icon btn-secondary" onclick="closeModal('addApartmentModal')">
+                    <i class="fas fa-times"></i>
+                    İptal
+                </button>
+                <button class="btn-icon btn-success" onclick="addApartment()">
+                    <i class="fas fa-check"></i>
+                    Kaydet
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Announcement Modal -->
+    <div id="addAnnouncementModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-bullhorn"></i>
+                    Yeni Duyuru Ekle
+                </h3>
+                <button class="modal-close" onclick="closeModal('addAnnouncementModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Duyuru Başlığı</label>
+                    <div class="input-group">
+                        <i class="fas fa-heading"></i>
+                        <input type="text" class="form-control" id="announcementTitle" placeholder="Duyuru başlığı giriniz">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Duyuru İçeriği</label>
+                    <textarea class="form-control" id="announcementContent" rows="5" placeholder="Duyuru içeriğini giriniz..." style="padding: 12px 15px;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-icon btn-secondary" onclick="closeModal('addAnnouncementModal')">
+                    <i class="fas fa-times"></i>
+                    İptal
+                </button>
+                <button class="btn-icon btn-success" onclick="addAnnouncement()">
+                    <i class="fas fa-check"></i>
+                    Yayınla
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="modal"> 
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">
+                <i class="fas fa-user-plus"></i>
+                Yeni Kullanıcı Ekle
+            </h3>
+            <button class="modal-close" onclick="closeModal('addUserModal')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Rol Seç</label>
+                <select class="form-control" id="userRole" onchange="toggleApartmentFields()">
+                    <option value="resident">Daire Sakini</option>
+                    <option value="manager">Yönetici</option>
+                </select>
+            </div>
+
+            <div id="apartmentFields">
+                <div class="form-group">
+                    <label>Apartman Seç</label>
+                    <select class="form-control" id="userBuilding" onchange="loadBuildingApartments()">
+                        <option value="">Apartman Seçin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Daire Seç</label>
+                    <select class="form-control" id="userApartment">
+                        <option value="">Önce apartman seçin</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Ad Soyad</label>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="userName" placeholder="Ad Soyad">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Kullanıcı Adı</label>
+                <div class="input-group">
+                    <i class="fas fa-user-circle"></i>
+                    <input type="text" class="form-control" id="newUsername" placeholder="Kullanıcı adı">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Şifre</label>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" class="form-control" id="newPassword" placeholder="Şifre">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-icon btn-secondary" onclick="closeModal('addUserModal')">
+                <i class="fas fa-times"></i>
+                İptal
+            </button>
+            <button class="btn-icon btn-success" onclick="addUser()">
+                <i class="fas fa-check"></i>
+                Kaydet
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Upload Receipt Modal -->
+    <div id="uploadReceiptModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-file-upload"></i>
+                    Dekont Yükle
+                </h3>
+                <button class="modal-close" onclick="closeModal('uploadReceiptModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 20px; color: var(--text-gray);">
+                    <strong>Ay:</strong> <span id="uploadReceiptMonth"></span><br>
+                    <strong>Tutar:</strong> <span id="uploadReceiptAmount"></span>₺
+                </p>
+                <div class="file-upload-area" onclick="document.getElementById('receiptFile').click()">
+                    <div class="file-upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p style="color: var(--text-gray); font-size: 14px;">Dekont dosyasını seçmek için tıklayın</p>
+                    <input type="file" id="receiptFile" style="display: none;" accept="image/*,.pdf" onchange="handleFileSelect(event)">
+                </div>
+                <div id="filePreview" style="margin-top: 20px;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-icon btn-secondary" onclick="closeModal('uploadReceiptModal')">
+                    <i class="fas fa-times"></i>
+                    İptal
+                </button>
+                <button class="btn-icon btn-success" onclick="uploadReceipt()">
+                    <i class="fas fa-check"></i>
+                    Yükle
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Receipt Modal -->
+    <div id="viewReceiptModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-file-invoice"></i>
+                    Dekont Önizleme
+                </h3>
+                <button class="modal-close" onclick="closeModal('viewReceiptModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="receiptPreviewContent"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-icon btn-danger" onclick="rejectReceipt()">
+                    <i class="fas fa-times"></i>
+                    Reddet
+                </button>
+                <button class="btn-icon btn-success" onclick="approveReceipt()">
+                    <i class="fas fa-check"></i>
+                    Onayla
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Month Unpaid Apartments Modal -->
+    <div id="monthUnpaidModal" class="modal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Ödeme Yapmayan Daireler
+                </h3>
+                <button class="modal-close" onclick="closeModal('monthUnpaidModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 20px; color: var(--text-gray);">
+                    <strong>Ay:</strong> <span id="unpaidModalMonth"></span><br>
+                    <strong>Apartman:</strong> <span id="unpaidModalBuilding"></span>
+                </p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-door-open"></i> Daire No</th>
+                                <th><i class="fas fa-user"></i> Malik/Kiracı</th>
+                                <th><i class="fas fa-phone"></i> Telefon</th>
+                                <th><i class="fas fa-info-circle"></i> Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody id="unpaidApartmentsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-icon btn-secondary" onclick="closeModal('monthUnpaidModal')">
+                    <i class="fas fa-times"></i>
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apartment Detail Modal (Dynamic Page) -->
+    <div id="apartmentDetailModal" class="modal">
+        <div class="modal-content" style="max-width: 1000px;">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-door-open"></i>
+                    Daire Detayları
+                </h3>
+                <button class="modal-close" onclick="closeModal('apartmentDetailModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="apartmentDetailContent">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+   <script type="module" src="script.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</body>
+</html>
